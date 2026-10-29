@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
   branches,
@@ -46,14 +45,11 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
         </p>
         <h1 className="mt-3 text-4xl text-balance">{service.title}</h1>
         <p className="mt-4 text-lg text-muted-foreground">{service.short}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {service.cities.map((id) => (
-            <Badge key={id} variant="secondary">
-              {branches.find((branch) => branch.id === id)?.city}
-            </Badge>
-          ))}
-          <Badge variant="outline">{service.visit}</Badge>
-        </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          {service.cities.map((id) => branches.find((branch) => branch.id === id)?.city).join(", ")}
+          {" · "}
+          {service.visit}
+        </p>
         <p className="mt-6 text-sm font-medium">{priceLabel(service)}</p>
         <h2 className="mt-10 text-2xl">Кому подходит</h2>
         <p className="mt-2 text-muted-foreground">{service.who}</p>
@@ -74,15 +70,15 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
         </ul>
         <h2 className="mt-8 text-2xl">После</h2>
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{service.after}</p>
-        <p className="mt-4 rounded-xl bg-muted px-4 py-3 text-sm">{service.limit}</p>
+        <p className="mt-4 border-l-2 border-foreground py-1 pl-4 text-sm">{service.limit}</p>
         {service.lenses ? (
           <>
             <h2 className="mt-8 text-2xl">Какие бывают линзы</h2>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-3 divide-y divide-border border-y border-border">
               {service.lenses.map((lens) => (
-                <li key={lens.name} className="rounded-xl bg-card p-4 ring-1 ring-foreground/10">
-                  <p className="font-medium">{lens.name}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{lens.note}</p>
+                <li key={lens.name} className="grid gap-1 py-3 sm:grid-cols-[12rem_1fr]">
+                  <p>{lens.name}</p>
+                  <p className="text-sm text-muted-foreground">{lens.note}</p>
                 </li>
               ))}
             </ul>
@@ -100,7 +96,7 @@ export default async function ServicePage({ params }: { params: Promise<Params> 
           ))}
         </Accordion>
       </div>
-      <aside className="h-fit space-y-4 rounded-3xl bg-card p-5 ring-1 ring-foreground/10 lg:sticky lg:top-28">
+      <aside className="h-fit space-y-4 border border-border p-5 lg:sticky lg:top-28">
         <p className="text-sm text-muted-foreground">Заявка по этому направлению</p>
         <p className="text-2xl">{priceLabel(service)}</p>
         <Link

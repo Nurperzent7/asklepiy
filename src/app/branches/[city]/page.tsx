@@ -39,7 +39,7 @@ export default async function BranchPage({ params }: { params: Promise<Params> }
       </p>
       <h1 className="mt-3 text-4xl">{branch.city}</h1>
       <p className="mt-3 text-lg text-muted-foreground">{branch.note}</p>
-      <dl className="mt-6 grid gap-4 rounded-2xl bg-card p-5 ring-1 ring-foreground/10 sm:grid-cols-3">
+      <dl className="mt-6 grid gap-4 border border-border p-5 sm:grid-cols-3">
         <div>
           <dt className="text-xs text-muted-foreground">Адрес</dt>
           <dd className="mt-1">{branch.address}</dd>
@@ -67,7 +67,7 @@ export default async function BranchPage({ params }: { params: Promise<Params> }
       <ul className="mt-4 grid gap-3 md:grid-cols-2">
         {cityServices.map((service) => (
           <li key={service.slug}>
-            <Link href={`/services/${service.slug}`} className="block rounded-xl bg-card p-4 ring-1 ring-foreground/10">
+            <Link href={`/services/${service.slug}`} className="block border border-border p-4">
               <span className="font-medium">{service.title}</span>
               <span className="mt-1 block text-sm text-muted-foreground">{priceLabel(service)}</span>
             </Link>
@@ -81,7 +81,7 @@ export default async function BranchPage({ params }: { params: Promise<Params> }
         <ul className="mt-4 grid gap-3 md:grid-cols-2">
           {people.map((doctor) => (
             <li key={doctor.slug}>
-              <Link href={`/doctors/${doctor.slug}`} className="block rounded-xl bg-card p-4 ring-1 ring-foreground/10">
+              <Link href={`/doctors/${doctor.slug}`} className="block border border-border p-4">
                 <span className="text-lg">{doctor.name}</span>
                 <span className="mt-1 block text-sm text-muted-foreground">{doctor.role}</span>
               </Link>

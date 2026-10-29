@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { branches, doctors, services, type CityId } from "@/lib/clinic";
 import { cn } from "cn";
 
@@ -19,60 +18,65 @@ export function DoctorBrowser({ initialCity }: { initialCity?: string }) {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Город">
-        <FilterChip active={city === ""} onClick={() => setCity("")}>
+    <div>
+      <div className="flex flex-wrap gap-x-4 gap-y-2 border-b border-border pb-3" role="group" aria-label="Город">
+        <TextFilter active={city === ""} onClick={() => setCity("")}>
           Все города
-        </FilterChip>
+        </TextFilter>
         {branches.map((branch) => (
-          <FilterChip key={branch.id} active={city === branch.id} onClick={() => setCity(branch.id)}>
+          <TextFilter key={branch.id} active={city === branch.id} onClick={() => setCity(branch.id)}>
             {branch.city}
-          </FilterChip>
+          </TextFilter>
         ))}
       </div>
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Направление">
-        <FilterChip active={service === ""} onClick={() => setService("")}>
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2" role="group" aria-label="Направление">
+        <TextFilter active={service === ""} onClick={() => setService("")}>
           Все направления
-        </FilterChip>
+        </TextFilter>
         {services.map((item) => (
-          <FilterChip key={item.slug} active={service === item.slug} onClick={() => setService(item.slug)}>
+          <TextFilter key={item.slug} active={service === item.slug} onClick={() => setService(item.slug)}>
             {item.title}
-          </FilterChip>
+          </TextFilter>
         ))}
       </div>
+
       {list.length === 0 ? (
-        <p className="rounded-xl border border-dashed p-6 text-sm text-muted-foreground" role="status">
-          В этом городе нет врача на выбранное направление. Снимите фильтр или откройте другой город.
+        <p className="mt-8 border border-dashed border-border px-4 py-6 text-sm text-muted-foreground" role="status">
+          В этом городе это направление не ведут. Выберите другой город или снимите фильтр.
         </p>
       ) : (
-        <ul className="grid gap-4 md:grid-cols-2">
-          {list.map((doctor) => (
+        <ol className="mt-8 divide-y divide-border border-y border-border">
+          {list.map((doctor, index) => (
             <li key={doctor.slug}>
               <Link
                 href={`/doctors/${doctor.slug}`}
-                className="block h-full rounded-2xl bg-card p-5 ring-1 ring-foreground/10 hover:ring-primary/40"
+                className="grid grid-cols-[2.5rem_1fr] gap-3 py-4 sm:grid-cols-[3rem_1fr_auto]"
               >
-                <p className="text-xl">{doctor.name}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{doctor.role}</p>
-                <p className="mt-3 text-sm">{doctor.focus}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {doctor.cities.map((id) => (
-                    <Badge key={id} variant="secondary">
-                      {branches.find((branch) => branch.id === id)?.city}
-                    </Badge>
-                  ))}
-                  <Badge variant="outline">{doctor.years} лет</Badge>
-                </div>
+                <span className="pt-1 text-sm tabular-nums text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span>
+                  <span className="block text-lg">{doctor.name}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {doctor.role}
+                    {" · "}
+                    {doctor.cities
+                      .map((id) => branches.find((branch) => branch.id === id)?.city)
+                      .join(", ")}
+                  </span>
+                  <span className="mt-1 block text-sm">{doctor.focus}</span>
+                </span>
+                <span className="hidden text-sm text-muted-foreground sm:block">{doctor.years} лет</span>
               </Link>
             </li>
           ))}
-        </ul>
+        </ol>
       )}
     </div>
   );
 }
 
-function FilterChip({
+function TextFilter({
   active,
   onClick,
   children,
@@ -87,8 +91,8 @@ function FilterChip({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "rounded-full border px-3 py-1.5 text-sm",
-        active ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:bg-muted"
+        "border-b py-1 text-sm",
+        active ? "border-foreground text-foreground" : "border-transparent text-muted-foreground"
       )}
     >
       {children}

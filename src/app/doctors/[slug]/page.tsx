@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { branches, doctorBySlug, doctors, serviceBySlug } from "@/lib/clinic";
 import { cn } from "cn";
@@ -32,19 +31,11 @@ export default async function DoctorPage({ params }: { params: Promise<Params> }
       </p>
       <h1 className="mt-3 text-4xl">{doctor.name}</h1>
       <p className="mt-2 text-lg text-muted-foreground">{doctor.role}</p>
-      <div className="mt-4 flex flex-wrap gap-2">
-        {doctor.cities.map((id) => (
-          <Badge key={id} variant="secondary">
-            {branches.find((branch) => branch.id === id)?.city}
-          </Badge>
-        ))}
-        <Badge variant="outline">{doctor.years} лет практики</Badge>
-        {doctor.speaks.map((language) => (
-          <Badge key={language} variant="outline">
-            {language}
-          </Badge>
-        ))}
-      </div>
+      <p className="mt-4 text-sm text-muted-foreground">
+        {doctor.cities.map((id) => branches.find((branch) => branch.id === id)?.city).join(", ")}
+        {" · "}
+        {doctor.years} лет · {doctor.speaks.join(", ")}
+      </p>
       <p className="mt-6 leading-relaxed">{doctor.bio}</p>
       <p className="mt-4 text-sm text-muted-foreground">{doctor.focus}</p>
       <h2 className="mt-8 text-2xl">Направления</h2>

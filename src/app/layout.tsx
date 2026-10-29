@@ -1,27 +1,22 @@
 import type { Metadata } from "next";
-import { Literata, Manrope } from "next/font/google";
+import { Onest } from "next/font/google";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { MobileBookBar } from "@/components/mobile-book-bar";
 import "./globals.css";
 
-const manrope = Manrope({
+const onest = Onest({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-manrope",
-});
-
-const literata = Literata({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-literata",
+  variable: "--font-onest",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "NurlyKoz — глазная клиника",
-    template: "%s — NurlyKoz",
+    default: "Нұрлы көз — глазная клиника",
+    template: "%s — Нұрлы көз",
   },
   description:
-    "Демонстрационный сайт сети глазных клиник: диагностика, лазер, катаракта и запись на приём в Алматы, Актау и Шымкенте.",
+    "Глазная клиника в Алматы, Актау и Шымкенте: диагностика, лазер, катаракта, глаукома и детский приём.",
 };
 
 export default function RootLayout({
@@ -30,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${literata.variable} h-full`}>
+    <html lang="ru" className={`${onest.variable} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
         <SiteHeader />
-        <main className="flex-1 pb-24 md:pb-0">{children}</main>
+        <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <SiteFooter />
         <MobileBookBar />
       </body>

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/sheet";
 import { branches } from "@/lib/clinic";
 import { cn } from "cn";
-import { Mark } from "@/components/mark";
 
 const links = [
   { href: "/services", label: "Услуги" },
@@ -27,71 +26,68 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/80 bg-background/90 backdrop-blur-md">
-      <div className="mx-auto hidden max-w-6xl items-center justify-between gap-4 px-4 py-2 text-xs text-muted-foreground sm:flex sm:px-6">
-        <p>Три города · вилка цен до визита · окно выбираете сами</p>
-        <p className="truncate">
-          {branches.map((branch) => `${branch.city} ${branch.phone}`).join(" · ")}
-        </p>
-      </div>
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2 text-foreground">
-          <Mark />
-          <span className="text-lg leading-none">
-            Nurly<span className="text-primary">Koz</span>
-          </span>
-        </Link>
-        <nav className="ml-6 hidden items-center gap-1 lg:flex" aria-label="Разделы">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "rounded-lg px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground",
-                pathname.startsWith(link.href) && "bg-muted text-foreground"
-              )}
-            >
-              {link.label}
-            </Link>
+    <header className="sticky top-0 z-40 bg-background">
+      <div className="hidden border-b border-white/10 bg-primary text-primary-foreground md:block">
+        <div className="mx-auto grid max-w-6xl grid-cols-3 px-6 text-sm">
+          {branches.map((branch) => (
+            <a key={branch.id} href={branch.phoneHref} className="truncate py-2 hover:underline">
+              <span className="text-primary-foreground/70">{branch.city}</span>
+              <span className="ml-2 tabular-nums">{branch.phone}</span>
+            </a>
           ))}
-        </nav>
-        <div className="ml-auto flex items-center gap-2">
+        </div>
+      </div>
+      <div className="border-b border-border">
+        <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
+          <Link href="/" className="leading-tight">
+            <span className="block text-[1.15rem] font-medium tracking-tight">Нұрлы көз</span>
+            <span className="block text-[11px] text-muted-foreground">глазная клиника</span>
+          </Link>
+          <nav className="ml-2 hidden items-center gap-5 lg:flex" aria-label="Разделы">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "text-sm text-muted-foreground hover:text-foreground",
+                  pathname.startsWith(link.href) && "text-foreground"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
           <Link
             href="/booking"
-            className={cn(buttonVariants({ size: "lg" }), "hidden h-10 px-4 md:inline-flex")}
+            className={cn(buttonVariants({ size: "lg" }), "ml-auto hidden h-10 px-4 md:inline-flex")}
           >
-            Записаться
+            Запись
           </Link>
           <Sheet>
             <SheetTrigger
-              className={cn(buttonVariants({ variant: "outline", size: "icon" }), "lg:hidden")}
+              className={cn(buttonVariants({ variant: "outline", size: "icon" }), "ml-auto lg:hidden")}
               aria-label="Открыть меню"
             >
               <Menu />
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-sm">
+            <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>Разделы</SheetTitle>
+                <SheetTitle>Нұрлы көз</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-1 px-4" aria-label="Мобильное меню">
+              <nav className="flex flex-col px-4" aria-label="Мобильное меню">
                 {links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="rounded-lg px-3 py-3 text-base hover:bg-muted"
-                  >
+                  <Link key={link.href} href={link.href} className="border-b border-border py-3 text-base">
                     {link.label}
                   </Link>
                 ))}
-                <Link href="/services/ostryy-priem" className="rounded-lg px-3 py-3 text-base text-destructive hover:bg-muted">
-                  Острый приём
+                <Link href="/services/ostryy-priem" className="border-b border-border py-3 text-base">
+                  Острая жалоба
                 </Link>
-                <Link
-                  href="/booking"
-                  className={cn(buttonVariants({ size: "lg" }), "mt-3 h-11")}
-                >
-                  Записаться
-                </Link>
+                {branches.map((branch) => (
+                  <a key={branch.id} href={branch.phoneHref} className="py-2 text-sm text-muted-foreground">
+                    {branch.city} · {branch.phone}
+                  </a>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>

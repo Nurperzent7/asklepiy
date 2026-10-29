@@ -134,7 +134,7 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
               aria-pressed={city === branch.id}
             >
               <span className="block text-base">{branch.city}</span>
-              <span className="mt-1 block text-xs text-muted-foreground">{branch.hours}</span>
+              <span className="mt-1 block text-xs opacity-70">{branch.hours}</span>
             </button>
           ))}
         </div>
@@ -155,7 +155,7 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
                 aria-pressed={service === item.slug}
               >
                 <span className="block text-base">{item.title}</span>
-                <span className="mt-1 block text-xs text-muted-foreground">{item.visit}</span>
+                <span className="mt-1 block text-xs opacity-70">{item.visit}</span>
               </button>
             ))}
           </div>
@@ -167,7 +167,7 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
         {!service ? (
           <p className="text-sm text-muted-foreground">Выберите услугу, чтобы увидеть, кто её ведёт.</p>
         ) : availableDoctors.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-border bg-muted/50 p-4 text-sm" role="status">
+          <p className="border border-dashed border-border px-4 py-4 text-sm" role="status">
             В этом городе нет врача на выбранную услугу. Смените город или направление — например, линза внутри глаза только в Алматы.
           </p>
         ) : (
@@ -189,7 +189,7 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
                 aria-pressed={doctor === item.slug}
               >
                 <span className="block text-base">{item.name}</span>
-                <span className="mt-1 block text-xs text-muted-foreground">
+                <span className="mt-1 block text-xs opacity-70">
                   {item.role} · {item.years} лет практики
                 </span>
               </button>
@@ -293,8 +293,7 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
             className="mt-1 size-4 accent-[var(--primary)]"
           />
           <span>
-            Понимаю, что это заявка в демонстрационный макет. Окно не считается приёмом, пока его не
-            подтвердит человек. Сайт не ставит диагноз.
+            Оставляю номер, чтобы подтвердить время. До звонка администратора это ещё не запись.
           </span>
         </label>
       </fieldset>
@@ -314,8 +313,8 @@ export function BookingWizard({ initialCity, initialService, initialDoctor }: Pr
 
 function choiceClass(active: boolean) {
   return cn(
-    "rounded-xl border px-4 py-3 text-left transition-colors",
-    active ? "border-primary bg-primary/10" : "border-border bg-card hover:bg-muted"
+    "border px-4 py-3 text-left",
+    active ? "border-foreground bg-foreground text-background" : "border-border bg-background hover:bg-muted"
   );
 }
 

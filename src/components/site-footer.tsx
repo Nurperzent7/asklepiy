@@ -1,54 +1,63 @@
 import Link from "next/link";
 import { branches } from "@/lib/clinic";
-import { Mark } from "@/components/mark";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-border bg-card">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-3">
+    <footer className="mt-20 bg-primary text-primary-foreground">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2">
-            <Mark />
-            <span className="text-lg">NurlyKoz</span>
-          </div>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Демонстрационный сайт глазной сети. Это не AsiaKoz и не лицензированная клиника.
-            Тексты не заменяют очный осмотр.
+          <p className="text-xl font-medium tracking-tight">Нұрлы көз</p>
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
+            Взрослые и дети. Алматы, Актау, Шымкент. Цену операции называем после осмотра.
           </p>
         </div>
         <div>
-          <p className="text-sm font-medium">Филиалы в макете</p>
-          <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+          <p className="text-xs tracking-wide text-primary-foreground/60 uppercase">Филиалы</p>
+          <ul className="mt-3 space-y-3 text-sm">
             {branches.map((branch) => (
               <li key={branch.id}>
-                <Link href={`/branches/${branch.id}`} className="hover:text-foreground">
+                <Link href={`/branches/${branch.id}`} className="hover:underline">
                   {branch.city}
                 </Link>
-                <span className="block">{branch.address}</span>
+                <span className="block text-primary-foreground/70">{branch.address}</span>
+                <a href={branch.phoneHref} className="tabular-nums text-primary-foreground/70 hover:underline">
+                  {branch.phone}
+                </a>
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <p className="text-sm font-medium">Пациенту</p>
+          <p className="text-xs tracking-wide text-primary-foreground/60 uppercase">Пациенту</p>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link href="/booking" className="text-muted-foreground hover:text-foreground">
-                Заявка на приём
+              <Link href="/booking" className="hover:underline">
+                Запись на приём
               </Link>
             </li>
             <li>
-              <Link href="/services/ostryy-priem" className="text-muted-foreground hover:text-foreground">
-                Острые симптомы
+              <Link href="/services" className="hover:underline">
+                Услуги и цены
               </Link>
             </li>
             <li>
-              <Link href="/faq" className="text-muted-foreground hover:text-foreground">
+              <Link href="/services/ostryy-priem" className="hover:underline">
+                Острая жалоба
+              </Link>
+            </li>
+            <li>
+              <Link href="/faq" className="hover:underline">
                 Вопросы
               </Link>
             </li>
           </ul>
         </div>
+      </div>
+      <div className="border-t border-white/10">
+        <p className="mx-auto max-w-6xl px-4 py-4 text-xs leading-relaxed text-primary-foreground/60 sm:px-6">
+          Образец сайта, не лицензированная клиника и не AsiaKoz. Тексты не заменяют осмотр. При травме или
+          резкой потере зрения звоните 103.
+        </p>
       </div>
     </footer>
   );

@@ -13,7 +13,7 @@ export default async function DoctorsPage({
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
       <h1 className="text-4xl">Врачи</h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">
-        Фильтр по городу и направлению. Если связки нет, каталог так и говорит — без пустой карточки.
+        Сначала город, потом направление. Если врача нет — список пустой, без заглушки.
       </p>
       <div className="mt-8">
         <DoctorBrowser initialCity={city} />

@@ -47,10 +47,10 @@ export default function BookingDonePage() {
       <p className="text-sm text-muted-foreground">Номер заявки</p>
       <h1 className="mt-1 text-4xl">{draft.code}</h1>
       <p className="mt-4 text-muted-foreground">
-        Это макет. Никто не перезвонит по номеру {draft.phone}. Сохраните экран, если хотите показать,
-        как выглядит подтверждение.
+        {draft.name}, окно {draft.day} в {draft.time}. В рабочей клинике администратор перезвонил бы на{" "}
+        {draft.phone}. Здесь заявка остаётся только в этом браузере.
       </p>
-      <dl className="mt-6 space-y-3 rounded-2xl bg-card p-5 text-sm ring-1 ring-foreground/10">
+      <dl className="mt-6 space-y-3 border border-border p-5 text-sm">
         <Row label="Имя" value={draft.name} />
         <Row label="Город" value={city?.city ?? draft.city} />
         <Row label="Услуга" value={service?.title ?? draft.service} />
