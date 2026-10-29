@@ -1,39 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { branches, priceLabel, services } from "@/lib/clinic";
+import { Eye } from "lucide-react";
+import { serviceCards } from "@/lib/az";
 
 export const metadata: Metadata = { title: "Услуги" };
 
 export default function ServicesPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <h1 className="text-4xl">Услуги</h1>
-      <p className="mt-3 max-w-xl text-muted-foreground">
-        Нижняя и верхняя граница. Итог — после измерений, в тот же день.
-      </p>
-      <ul className="mt-10 divide-y divide-border border-y border-border">
-        {services.map((service) => (
-          <li key={service.slug}>
-            <Link
-              href={`/services/${service.slug}`}
-              className="grid gap-2 py-5 sm:grid-cols-[1fr_auto] sm:gap-10"
-            >
-              <span>
-                <span className="block text-xl">{service.title}</span>
-                <span className="mt-1 block max-w-xl text-sm leading-relaxed text-muted-foreground">
-                  {service.short}
-                </span>
-                <span className="mt-2 block text-sm text-muted-foreground">
-                  {service.cities
-                    .map((id) => branches.find((branch) => branch.id === id)?.city)
-                    .join(", ")}
-                </span>
-              </span>
-              <span className="tabular-nums sm:pt-1 sm:text-right">{priceLabel(service)}</span>
+    <div className="mx-auto max-w-6xl px-4 py-12">
+      <h1 className="text-center text-4xl font-extrabold">Услуги</h1>
+      <p className="mt-2 text-center text-sm text-[#4a5568]">Диагностика, лечение и сложные операции на глазах</p>
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {serviceCards.map((service) => (
+          <article key={service.slug} className="rounded-[1.4rem] border border-black/[0.05] bg-white p-6">
+            <span className="grid size-11 place-items-center rounded-2xl bg-[#e7f8fb] text-[#00a9c1]">
+              <Eye className="size-5" />
+            </span>
+            <h2 className="mt-4 text-lg font-bold">{service.title}</h2>
+            <p className="mt-2 text-sm text-[#4a5568]">{service.text}</p>
+            <Link href={`/services/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-[#00a9c1]">
+              Подробнее →
             </Link>
-          </li>
+          </article>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

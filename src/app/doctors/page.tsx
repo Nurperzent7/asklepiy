@@ -1,22 +1,31 @@
 import type { Metadata } from "next";
-import { DoctorBrowser } from "@/components/doctor-browser";
+import Link from "next/link";
+import { doctors, waLink } from "@/lib/az";
 
 export const metadata: Metadata = { title: "Врачи" };
 
-export default async function DoctorsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ city?: string }>;
-}) {
-  const { city } = await searchParams;
+export default function DoctorsPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-      <h1 className="text-4xl">Врачи</h1>
-      <p className="mt-3 max-w-2xl text-muted-foreground">
-        Сначала город, потом направление. Если врача нет — список пустой, без заглушки.
-      </p>
-      <div className="mt-8">
-        <DoctorBrowser initialCity={city} />
+    <div className="mx-auto max-w-6xl px-4 py-12">
+      <h1 className="text-4xl font-extrabold">Врачи</h1>
+      <p className="mt-2 max-w-xl text-sm text-[#4a5568]">Приём в Алматы, Актау и Шымкенте.</p>
+      <div className="mt-8 grid gap-4 lg:grid-cols-2">
+        {doctors.map((doctor) => (
+          <article key={doctor.slug} className="rounded-[1.4rem] border border-black/[0.05] bg-white p-5">
+            <p className="text-[11px] font-bold tracking-wide text-[#8aa0aa] uppercase">{doctor.cities}</p>
+            <h2 className="mt-1 text-2xl font-extrabold">{doctor.name}</h2>
+            <p className="font-semibold">{doctor.role}</p>
+            <p className="mt-2 text-sm text-[#4a5568]">{doctor.text}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link href={`/doctors/${doctor.slug}`} className="text-sm font-semibold text-[#00a9c1]">
+                Подробнее →
+              </Link>
+              <a href={waLink("almaty", `Врач: ${doctor.name}`)} className="text-sm font-semibold text-[#00a9c1]">
+                Записаться к врачу
+              </a>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );

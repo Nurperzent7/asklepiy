@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { buttonVariants } from "@/components/ui/button";
-import { branches, doctorBySlug, doctors, serviceBySlug } from "@/lib/clinic";
-import { cn } from "cn";
+import { doctors, waLink } from "@/lib/az";
 
 type Params = { slug: string };
 
@@ -13,51 +11,37 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  return { title: doctorBySlug(slug)?.name ?? "Врач" };
+  return { title: doctors.find((doctor) => doctor.slug === slug)?.name ?? "Врач" };
 }
 
 export default async function DoctorPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
-  const doctor = doctorBySlug(slug);
+  const doctor = doctors.find((item) => item.slug === slug);
   if (!doctor) notFound();
-  const city = doctor.cities[0];
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-sm text-muted-foreground">
-        <Link href="/doctors" className="hover:text-foreground">
-          Врачи
-        </Link>
-      </p>
-      <h1 className="mt-3 text-4xl">{doctor.name}</h1>
-      <p className="mt-2 text-lg text-muted-foreground">{doctor.role}</p>
-      <p className="mt-4 text-sm text-muted-foreground">
-        {doctor.cities.map((id) => branches.find((branch) => branch.id === id)?.city).join(", ")}
-        {" · "}
-        {doctor.years} лет · {doctor.speaks.join(", ")}
-      </p>
-      <p className="mt-6 leading-relaxed">{doctor.bio}</p>
-      <p className="mt-4 text-sm text-muted-foreground">{doctor.focus}</p>
-      <h2 className="mt-8 text-2xl">Направления</h2>
-      <ul className="mt-3 space-y-2">
-        {doctor.services.map((slug) => {
-          const service = serviceBySlug(slug);
-          if (!service) return null;
-          return (
-            <li key={slug}>
-              <Link href={`/services/${slug}`} className="hover:underline">
-                {service.title}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-      <Link
-        href={`/booking?city=${city}&doctor=${doctor.slug}`}
-        className={cn(buttonVariants({ size: "lg" }), "mt-8 h-11 px-5")}
-      >
-        Заявка к этому врачу
+    <article className="mx-auto max-w-3xl px-4 py-12">
+      <Link href="/doctors" className="text-sm text-[#4a5568]">
+        Врачи
       </Link>
+      <p className="mt-4 text-[11px] font-bold tracking-wide text-[#8aa0aa] uppercase">{doctor.cities}</p>
+      <h1 className="mt-2 text-4xl font-extrabold">{doctor.name}</h1>
+      <p className="mt-2 text-lg font-semibold">{doctor.role}</p>
+      <p className="mt-2 text-[#4a5568]">{doctor.line}</p>
+      <p className="mt-4 leading-relaxed">{doctor.text}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {doctor.chips.map((chip) => (
+          <span key={chip} className="rounded-full bg-[#f3f7f8] px-3 py-1 text-sm font-semibold">
+            {chip}
+          </span>
+        ))}
+      </div>
+      <a
+        href={waLink("almaty", `Врач: ${doctor.name}`)}
+        className="mt-8 inline-flex h-12 items-center rounded-full bg-[#00a9c1] px-5 text-sm font-bold text-white"
+      >
+        Записаться к врачу
+      </a>
     </article>
   );
 }

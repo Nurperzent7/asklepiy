@@ -1,63 +1,52 @@
 import Link from "next/link";
-import { branches } from "@/lib/clinic";
+import { branches } from "@/lib/az";
+import { Logo } from "@/components/logo";
+
+const links = [
+  ["/about", "О клинике"],
+  ["/services", "Услуги"],
+  ["/doctors", "Врачи"],
+  ["/reviews", "Отзывы"],
+  ["/news", "Новости"],
+  ["/contacts", "Контакты"],
+  ["/privacy", "Политика конфиденциальности"],
+] as const;
 
 export function SiteFooter() {
   return (
-    <footer className="mt-20 bg-primary text-primary-foreground">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr]">
+    <footer className="border-t border-black/[0.04] bg-white">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:grid-cols-[1.4fr_0.8fr]">
         <div>
-          <p className="text-xl font-medium tracking-tight">Нұрлы көз</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-primary-foreground/75">
-            Взрослые и дети. Алматы, Актау, Шымкент. Цену операции называем после осмотра.
+          <Logo />
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#4a5568]">
+            AsiaKoz — офтальмологические клиники в Алматы, Актау и Шымкенте.
           </p>
-        </div>
-        <div>
-          <p className="text-xs tracking-wide text-primary-foreground/60 uppercase">Филиалы</p>
-          <ul className="mt-3 space-y-3 text-sm">
+          <div className="mt-4 flex flex-wrap gap-2">
             {branches.map((branch) => (
-              <li key={branch.id}>
-                <Link href={`/branches/${branch.id}`} className="hover:underline">
-                  {branch.city}
-                </Link>
-                <span className="block text-primary-foreground/70">{branch.address}</span>
-                <a href={branch.phoneHref} className="tabular-nums text-primary-foreground/70 hover:underline">
-                  {branch.phone}
-                </a>
-              </li>
+              <a
+                key={branch.id}
+                href={branch.instagramUrl}
+                className="inline-flex items-center gap-2 rounded-full border border-black/10 px-3 py-1.5 text-sm text-[#0c1222]"
+              >
+                <span className="size-4 rounded bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" />
+                {branch.instagram}
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
-        <div>
-          <p className="text-xs tracking-wide text-primary-foreground/60 uppercase">Пациенту</p>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li>
-              <Link href="/booking" className="hover:underline">
-                Запись на приём
+        <ul className="space-y-2 text-sm text-[#4a5568] md:justify-self-end">
+          {links.map(([href, label]) => (
+            <li key={href}>
+              <Link href={href} className="hover:text-[#0c1222]">
+                {label}
               </Link>
             </li>
-            <li>
-              <Link href="/services" className="hover:underline">
-                Услуги и цены
-              </Link>
-            </li>
-            <li>
-              <Link href="/services/ostryy-priem" className="hover:underline">
-                Острая жалоба
-              </Link>
-            </li>
-            <li>
-              <Link href="/faq" className="hover:underline">
-                Вопросы
-              </Link>
-            </li>
-          </ul>
-        </div>
+          ))}
+        </ul>
       </div>
-      <div className="border-t border-white/10">
-        <p className="mx-auto max-w-6xl px-4 py-4 text-xs leading-relaxed text-primary-foreground/60 sm:px-6">
-          Образец сайта, не лицензированная клиника и не AsiaKoz. Тексты не заменяют осмотр. При травме или
-          резкой потере зрения звоните 103.
-        </p>
+      <div className="border-t border-black/[0.04] px-4 py-5 text-center text-xs leading-relaxed text-[#8b95a5]">
+        <p>Точный диагноз и метод лечения определяет врач после обследования.</p>
+        <p className="mt-1">© {new Date().getFullYear()} ТОО «ASIA KOZ»</p>
       </div>
     </footer>
   );
