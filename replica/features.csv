@@ -1,0 +1,32 @@
+feature,area,priority,original,clone,notes
+Global top navigation across primary sections,navigation,must,yes,no,Home Research Members Publications Facilities News Art&Career Gallery
+Responsive academic layout (desktop + mobile),ux,must,yes,no,Wix responsive; rebuild clean-room
+Lab brand / identity block on home,home,must,yes,no,LMSL + Anasori Research Lab hero-level identity
+Principal investigator featured profile,people,must,yes,no,Name title schools obfuscated email bio
+Role-grouped members directory,people,must,yes,no,Postdoc grad visitor RA undergrad sections
+Research themes with sponsor/grant context,research,must,yes,no,NSF DMR SSMC ONR NSF Future Manufacturing etc
+MXene fundamentals explainer section,research,must,yes,no,What are MXenes / property tuning
+Year-indexed publications list with DOI links,publications,must,yes,no,Numbered entries by year
+Facilities catalog with instrument specs,facilities,must,yes,no,Furnaces SPS gloveboxes etc + INDI shared
+Chronological news posts by year,news,must,yes,no,Title date body optional image
+Alumni directory separate from current members,people,must,yes,no,Grad postdoc undergrad visiting scholars
+Image gallery for covers and SEM art,gallery,must,yes,no,Captions and award lines
+Outreach page for teaching and competitions,outreach,must,yes,no,Courses NanoArtography SciVid MRS
+Honors and awards timeline,people,should,yes,no,/honors-and-awards
+Obfuscated emails without mailto harvest,people,should,yes,no,name[at]domain pattern
+External DOI / PDF / YouTube / competition links,content,should,yes,no,Link out only do not host paywalled PDFs
+News archive for older years,news,should,yes,no,/news2018andbefore
+Group photo albums on alumni,people,should,yes,no,Semester albums
+Shared vs in-lab facility labeling,facilities,should,yes,no,INDI location notes
+Footer copyright line,chrome,should,yes,no,Pattern only not original trademark text
+Publication year jump / filter chips,publications,could,yes,no,Improve UX vs long scroll
+Full-text search across papers and people,search,could,no,no,Not observed on original; high value add
+CMS admin for non-dev content edits,cms,could,no,no,Original uses Wix editor
+Dark mode toggle,ux,could,no,no,Not on original
+RSS or newsletter signup,news,could,no,no,Not observed
+Wix site-members login,auth,skip,yes,skip,Platform account not product surface
+Copy original prose photos logos SEM art,content,skip,yes,skip,Owned content; clone structure only
+NanoArtography.org competition platform,integrations,skip,yes,skip,External partner site
+MRS YouTube / SciVid hosting,integrations,skip,yes,skip,External network
+Duplicate /copy-of-news page,news,skip,yes,skip,Sitemap leftover
+Publisher paywalled full texts,publications,skip,yes,skip,Link DOI only
