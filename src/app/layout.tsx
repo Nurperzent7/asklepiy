@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${jakarta.variable} ${manrope.variable} h-full`}>
-      <body className="min-h-full bg-[#f7fbfd] text-[#0c1222] antialiased">
+      <body className="min-h-full bg-[#f3fafc] text-[#0c1222] antialiased [background-image:radial-gradient(ellipse_80%_42%_at_100%_-8%,rgba(0,169,193,0.14),transparent_52%),radial-gradient(ellipse_55%_36%_at_-8%_8%,rgba(186,230,240,0.7),transparent_48%)]">
         <CityProvider>
           <SiteHeader />
           <main className="pb-24 md:pb-0">

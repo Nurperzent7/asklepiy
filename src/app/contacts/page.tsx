@@ -4,6 +4,7 @@ import { MapPin } from "lucide-react";
 import { branches, waLink } from "@/lib/az";
 import { useClinic } from "@/components/city-context";
 import { WaIcon } from "@/components/logo";
+import { PageIntro } from "@/components/page-intro";
 
 export default function ContactsPage() {
   const { city, setCity } = useClinic();
@@ -11,7 +12,7 @@ export default function ContactsPage() {
 
   return (
     <div className="mx-auto max-w-xl px-4 py-12 text-center">
-      <h1 className="text-4xl font-extrabold">Контакты</h1>
+      <PageIntro kicker="ФИЛИАЛЫ" title="Контакты" text="Выберите город — ниже адрес, часы и WhatsApp." />
       <div className="mt-5 flex justify-center gap-2">
         {branches.map((item) => (
           <button

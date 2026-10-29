@@ -22,6 +22,14 @@ import { Reveal } from "@/components/reveal";
 
 const serviceIcons = [Zap, Focus, Scan, Eye, Activity, Eye];
 const serviceTones = ["bg-[#e7f8fb]", "bg-[#e8f4ff]", "bg-[#eef6ff]", "bg-[#e7fbf3]", "bg-[#f3f7ff]", "bg-[#e7f8fb]"];
+const serviceAccents = ["#00a9c1", "#14919b", "#0e7490", "#1d6a86", "#3b82c4", "#0f766e"];
+const stories = [
+  { title: "Лечение косоглазия", wash: "from-[#082033] via-[#0e4f66] to-[#14919b]" },
+  { title: "После операции", wash: "from-[#102a43] via-[#1d4e6f] to-[#00a9c1]" },
+  { title: "Приём врача", wash: "from-[#0b3a4a] via-[#146c80] to-[#7ec4de]" },
+  { title: "Филиал", wash: "from-[#071824] via-[#123246] to-[#1d6a86]" },
+  { title: "Консультация", wash: "from-[#12324c] via-[#245864] to-[#3aa0c4]" },
+];
 
 export function HomePage() {
   const { city, setCity, lang } = useClinic();
@@ -31,27 +39,40 @@ export function HomePage() {
   const reviewRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="bg-[#f7fbfd] text-[#0c1222]">
-      <section className="relative mx-auto grid max-w-6xl items-center gap-10 overflow-hidden px-4 py-10 lg:grid-cols-2 lg:py-16">
+    <div className="text-[#0c1222]">
+      <section className="relative mx-auto grid max-w-6xl items-center gap-10 overflow-hidden px-4 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
         <div className="blob pointer-events-none absolute -top-8 right-[6%] size-72 rounded-full bg-[#00a9c1]/15 blur-3xl" />
         <div
           className="blob pointer-events-none absolute bottom-0 left-[4%] size-56 rounded-full bg-[#8ec4ee]/40 blur-3xl"
           style={{ animationDelay: "-3s" }}
         />
         <div className="relative">
-          <p className="rise text-xs font-bold tracking-[0.16em] text-[#00a9c1]">АЛМАТЫ · АКТАУ · ШЫМКЕНТ</p>
+          <p className="rise text-xs font-bold tracking-[0.18em] text-[#00a9c1]">АЛМАТЫ · АКТАУ · ШЫМКЕНТ</p>
           <h1
-            className="rise mt-3 text-[34px] leading-[1.12] font-extrabold tracking-[-0.03em] sm:text-[44px]"
+            className="rise mt-3 text-[36px] leading-[1.08] font-extrabold tracking-[-0.035em] sm:text-[52px]"
             style={{ animationDelay: "80ms" }}
           >
-            AsiaKoz — турецкая глазная клиника
+            Турецкая глазная клиника <span className="text-[#00a9c1]">AsiaKoz</span>
           </h1>
           <p className="rise mt-4 max-w-xl text-[17px] leading-relaxed text-[#3d4a5c]" style={{ animationDelay: "150ms" }}>
-            Турецкие офтальмохирурги. Диагностика и лечение зрения в Алматы, Актау и Шымкенте
+            Турецкие офтальмохирурги. Диагностика и лечение зрения в Алматы, Актау и Шымкенте.
           </p>
-          <p className="rise mt-3 text-sm text-[#4a5568]" style={{ animationDelay: "210ms" }}>
-            Алматы, Актау и Шымкент. Три филиала в Казахстане.
-          </p>
+          <div className="rise mt-6 flex flex-wrap gap-2" style={{ animationDelay: "210ms" }}>
+            {branches.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setCity(item.id)}
+                className={
+                  item.id === city
+                    ? "h-9 rounded-full bg-[#0c1222] px-3.5 text-xs font-bold text-white"
+                    : "h-9 rounded-full bg-white/80 px-3.5 text-xs font-semibold text-[#245864] ring-1 ring-[#d5eef3] hover:ring-[#00a9c1]"
+                }
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
           <div className="rise mt-7" style={{ animationDelay: "280ms" }}>
             <a
               href={waLink(city)}
@@ -60,6 +81,7 @@ export function HomePage() {
               <WaIcon />
               {lang === "ru" ? "Записаться в WhatsApp" : "WhatsApp-қа жазылу"}
             </a>
+            <p className="mt-3 text-xs text-[#4a5568]">Пн–Пт 09:00–17:00 · Сб до 14:00</p>
           </div>
         </div>
         <div className="rise relative" style={{ animationDelay: "160ms" }}>
@@ -75,9 +97,10 @@ export function HomePage() {
         </div>
       </section>
 
-      <Reveal className="mx-auto max-w-6xl px-4 py-6">
-        <div className="mb-4 flex items-end justify-between">
-          <h2 className="text-[28px] font-extrabold tracking-tight">
+      <div className="border-y border-[#e5f4f7] bg-white/75 py-8 backdrop-blur-sm">
+      <Reveal className="mx-auto max-w-6xl px-4">
+        <div className="mb-5 flex items-end justify-between">
+          <h2 className="text-[28px] font-extrabold tracking-tight sm:text-[32px]">
             {lang === "ru" ? "Почему выбирают AsiaKoz" : "Неге AsiaKoz"}
           </h2>
           <Arrows target={whyRef} />
@@ -88,10 +111,10 @@ export function HomePage() {
             return (
               <article
                 key={item.n}
-                className="lift w-[min(300px,82vw)] shrink-0 snap-start rounded-[1.35rem] border border-black/[0.06] bg-white px-5 py-4 shadow-[0_10px_30px_rgba(12,18,34,0.04)] sm:w-[calc(25%-9px)]"
+                className="lift relative w-[min(300px,82vw)] shrink-0 snap-start overflow-hidden rounded-[1.5rem] border border-[#e7f3f6] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(12,40,60,0.05)] sm:w-[calc(25%-9px)]"
               >
-                <div className="flex items-center justify-between">
-                  <span className="grid size-9 place-items-center rounded-full bg-[#e7f8fb] text-[#00a9c1]">
+                <div className="relative flex items-center justify-between">
+                  <span className="grid size-10 place-items-center rounded-2xl bg-[#e7f8fb] text-[#00a9c1]">
                     <Icon className="size-4" />
                   </span>
                   <span className="text-xs font-semibold text-[#8aa0aa]">{item.n}</span>
@@ -103,16 +126,18 @@ export function HomePage() {
           })}
         </div>
       </Reveal>
+      </div>
 
-      <Reveal className="mx-auto max-w-6xl px-4 py-10 text-center" delay={40}>
+      <Reveal className="mx-auto max-w-6xl px-4 py-14 text-center" delay={40}>
         <h2 className="text-[32px] font-extrabold">{lang === "ru" ? "Услуги" : "Қызметтер"}</h2>
         <p className="mt-2 text-sm text-[#4a5568]">Диагностика, лечение и сложные операции на глазах</p>
         <div className="mt-8 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-3">
           {serviceCards.map((service, index) => {
             const Icon = serviceIcons[index] ?? Eye;
             return (
-            <article key={service.slug} className="group lift sheen rounded-[1.4rem] border border-black/[0.05] bg-white p-6 shadow-[0_10px_30px_rgba(12,18,34,0.04)]">
-              <span className={`grid size-11 place-items-center rounded-2xl text-[#00a9c1] transition-transform duration-300 group-hover:scale-110 ${serviceTones[index]}`}>
+            <article key={service.slug} className="group lift sheen relative overflow-hidden rounded-[1.5rem] border border-[#e7f3f6] bg-white p-6 shadow-[0_16px_40px_rgba(12,40,60,0.05)]">
+              <span className="absolute inset-x-0 top-0 h-1" style={{ background: serviceAccents[index] }} />
+              <span className={`grid size-12 place-items-center rounded-2xl text-[#00a9c1] transition-transform duration-300 group-hover:scale-110 ${serviceTones[index]}`}>
                 <Icon className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{service.title}</h3>
@@ -133,7 +158,8 @@ export function HomePage() {
       </Reveal>
 
       <Reveal className="mx-auto max-w-6xl px-4 py-4">
-        <div className="grid items-center gap-6 rounded-[28px] border border-[#d7f3e4] bg-gradient-to-r from-[#f3fff8] to-white px-6 py-7 shadow-[0_16px_40px_rgba(37,211,102,0.08)] md:grid-cols-[1fr_auto]">
+        <div className="relative grid items-center gap-6 overflow-hidden rounded-[32px] border border-[#d7f3e4] bg-gradient-to-br from-[#f3fff8] via-white to-[#e7fbf3] px-6 py-8 shadow-[0_18px_50px_rgba(37,211,102,0.1)] md:grid-cols-[1fr_auto] md:px-8">
+          <div className="pointer-events-none absolute -right-8 -bottom-10 size-40 rounded-full bg-[#25d366]/15 blur-2xl" />
           <div>
             <p className="text-xs font-bold tracking-[0.14em] text-[#25d366]">ЗАПИСЬ</p>
             <h2 className="mt-2 text-[26px] font-extrabold tracking-tight">
@@ -158,7 +184,8 @@ export function HomePage() {
         </div>
       </Reveal>
 
-      <Reveal className="mx-auto max-w-6xl px-4 py-12">
+      <div className="border-y border-[#e5f4f7] bg-white/75 py-12">
+      <Reveal className="mx-auto max-w-6xl px-4">
         <div className="mb-5 flex items-end justify-between gap-4">
           <div>
             <h2 className="text-[32px] font-extrabold">Врачи</h2>
@@ -172,10 +199,10 @@ export function HomePage() {
           {doctors.map((doctor) => (
             <article
               key={doctor.slug}
-              className="lift flex w-[min(560px,88vw)] shrink-0 snap-start overflow-hidden rounded-[1.6rem] border border-black/[0.05] bg-white shadow-[0_12px_30px_rgba(12,18,34,0.05)]"
+              className="lift flex w-[min(560px,88vw)] shrink-0 snap-start overflow-hidden rounded-[1.7rem] border border-[#e7f3f6] bg-white shadow-[0_18px_44px_rgba(12,40,60,0.06)]"
             >
-              <div className={`grid w-[42%] place-items-end ${doctor.tone}`}>
-                <Portrait name={doctor.name} />
+              <div className={`relative grid w-[42%] place-items-end ${doctor.tone}`}>
+                <Portrait slug={doctor.slug} />
               </div>
               <div className="flex w-[58%] flex-col p-4 sm:p-5">
                 <p className="text-[10px] font-bold tracking-[0.08em] text-[#8aa0aa] uppercase">{doctor.cities}</p>
@@ -205,8 +232,9 @@ export function HomePage() {
           ))}
         </div>
       </Reveal>
+      </div>
 
-      <Reveal className="mx-auto max-w-6xl px-4 py-6">
+      <Reveal className="mx-auto max-w-6xl px-4 py-14">
         <div className="mb-4 flex items-end justify-between">
           <div>
             <h2 className="text-[32px] font-extrabold">Отзывы пациентов</h2>
@@ -215,16 +243,22 @@ export function HomePage() {
           <Arrows target={reviewRef} />
         </div>
         <div ref={reviewRef} className="flex snap-x gap-4 overflow-x-auto pb-3">
-          {["Лечение косоглазия", "После операции", "Приём врача", "Филиал", "Консультация"].map((title) => (
+          {stories.map((story) => (
             <a
-              key={title}
+              key={story.title}
               href={branch.instagramUrl}
-              className="lift group w-[230px] shrink-0 snap-start overflow-hidden rounded-[1.4rem] border border-black/[0.05] bg-white shadow-sm"
+              className="lift group w-[230px] shrink-0 snap-start overflow-hidden rounded-[1.6rem] border border-[#e7f3f6] bg-white shadow-[0_16px_40px_rgba(12,40,60,0.06)]"
             >
-              <div className="relative grid h-[300px] place-items-center bg-gradient-to-b from-[#d7eef3] to-[#8fb4c4]">
-                <span className="px-4 text-center text-sm font-bold tracking-wide text-white uppercase">{title}</span>
-                <span className="play-btn absolute grid size-14 place-items-center rounded-full bg-white text-[#00a9c1] shadow-[0_10px_24px_rgba(12,18,34,0.16)] transition-transform group-hover:scale-110">
-                  ▶
+              <div className={`relative h-[280px] overflow-hidden bg-gradient-to-b ${story.wash}`}>
+                <span className="pointer-events-none absolute top-14 left-1/2 size-36 -translate-x-1/2 rounded-full border border-white/25" />
+                <span className="pointer-events-none absolute top-20 left-1/2 size-20 -translate-x-1/2 rounded-full border border-white/40" />
+                <span className="absolute top-[4.5rem] left-1/2 -translate-x-1/2">
+                  <span className="play-btn grid size-14 place-items-center rounded-full bg-white/95 pl-0.5 text-lg text-[#00a9c1] shadow-[0_10px_24px_rgba(12,18,34,0.16)]">
+                    ▶
+                  </span>
+                </span>
+                <span className="absolute inset-x-4 bottom-4 text-center text-[13px] font-bold tracking-wide text-white uppercase">
+                  {story.title}
                 </span>
               </div>
               <div className="p-3">
@@ -253,10 +287,11 @@ export function HomePage() {
       <Reveal className="mx-auto max-w-6xl px-4 py-12 text-center">
         <h2 className="text-[32px] font-extrabold">Как записаться</h2>
         <p className="mt-1 text-sm text-[#4a5568]">3 простых шага — без звонка</p>
-        <div className="mt-8 grid gap-4 text-center md:grid-cols-3">
+        <div className="relative mt-10 grid gap-4 text-center md:grid-cols-3">
+          <div aria-hidden className="pointer-events-none absolute top-[52px] right-[16%] left-[16%] hidden border-t border-dashed border-[#00a9c1]/40 md:block" />
           {steps.map((step) => (
-            <article key={step.n} className="lift rounded-[1.4rem] bg-white px-6 py-7 shadow-[0_10px_30px_rgba(12,18,34,0.04)]">
-              <span className="mx-auto grid size-8 place-items-center rounded-full bg-[#00a9c1] text-sm font-bold text-white">
+            <article key={step.n} className="lift relative rounded-[1.6rem] border border-white bg-white/90 px-6 py-8 shadow-[0_16px_40px_rgba(12,40,60,0.05)]">
+              <span className="relative z-10 mx-auto grid size-12 place-items-center rounded-2xl bg-[#00a9c1] text-lg font-extrabold text-white shadow-[0_10px_24px_rgba(0,169,193,0.35)]">
                 {step.n}
               </span>
               <h3 className="mt-4 font-bold">{step.title}</h3>
@@ -275,7 +310,8 @@ export function HomePage() {
       </Reveal>
 
       <Reveal id="booking" className="mx-auto max-w-3xl px-4 pb-16">
-        <div className="rounded-[28px] bg-white px-5 py-8 text-center shadow-[0_16px_40px_rgba(12,18,34,0.06)]">
+        <div className="rounded-[32px] bg-gradient-to-br from-[#00a9c1] via-[#7ed7e4] to-white p-px shadow-[0_24px_60px_rgba(0,169,193,0.16)]">
+        <div className="rounded-[31px] bg-white px-5 py-10 text-center">
           <h2 className="text-[30px] font-extrabold">Запишитесь на приём</h2>
           <p className="mt-2 text-sm text-[#4a5568]">Выберите город — откроется WhatsApp филиала.</p>
           <div className="mt-5 flex justify-center gap-2">
@@ -309,6 +345,7 @@ export function HomePage() {
             </Link>
             .
           </p>
+        </div>
         </div>
       </Reveal>
 
@@ -356,46 +393,62 @@ export function HomePage() {
   );
 }
 
-const facadeWindows = [
-  [92, 168], [128, 168], [164, 168],
-  [92, 204], [128, 204], [164, 204],
-  [92, 240], [128, 240], [164, 240],
-  [228, 96], [268, 96], [308, 96], [348, 96], [388, 96],
-  [228, 136], [268, 136], [308, 136], [348, 136], [388, 136],
-  [228, 176], [268, 176], [308, 176], [348, 176], [388, 176],
-  [228, 216], [268, 216], [348, 216], [388, 216],
-  [228, 256], [268, 256], [348, 256], [388, 256],
-  [452, 198], [488, 198], [524, 198],
-  [452, 234], [488, 234], [524, 234],
-  [452, 270], [488, 270], [524, 270],
-];
+function panes(x0: number, y0: number, cols: number, rows: number) {
+  const items: Array<[number, number]> = [];
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
+      items.push([x0 + col * 34, y0 + row * 32]);
+    }
+  }
+  return items;
+}
 
 function ClinicFacade() {
+  const windows = [...panes(88, 188, 3, 4), ...panes(236, 104, 5, 6), ...panes(448, 210, 3, 3)];
   return (
-    <div className="relative aspect-[16/11] overflow-hidden rounded-[28px] bg-gradient-to-b from-[#8fd0ea] via-[#1a6288] to-[#0b2740] shadow-[0_24px_60px_rgba(12,18,34,0.18)]">
-      <div className="absolute top-6 right-10 size-16 rounded-full bg-white/80 blur-[2px]" />
-      <div className="absolute top-10 right-16 size-24 rounded-full bg-white/30 blur-2xl" />
+    <div className="relative aspect-[16/11] overflow-hidden rounded-[32px] shadow-[0_30px_70px_rgba(8,30,48,0.22)] ring-1 ring-white/50">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#e7f7fb_0%,#8ecfe4_26%,#1a6d93_58%,#071824_100%)]" />
+      <div className="absolute top-7 right-14 size-16 rounded-full bg-[#fff6d4] shadow-[0_0_46px_rgba(255,246,212,0.95)]" />
       <svg viewBox="0 0 640 440" className="absolute inset-0 h-full w-full" aria-hidden>
-        <rect x="0" y="348" width="640" height="92" fill="#071726" />
-        <rect x="0" y="348" width="640" height="8" fill="#00a9c1" opacity="0.55" />
-        <rect x="78" y="156" width="132" height="192" rx="6" fill="#12324c" />
-        <rect x="206" y="72" width="228" height="276" rx="8" fill="#163e5e" />
-        <rect x="430" y="186" width="132" height="162" rx="6" fill="#12324c" />
-        <rect x="292" y="292" width="56" height="56" rx="2" fill="#0c2438" />
-        <rect x="304" y="308" width="32" height="40" rx="2" fill="#7ee0ef" className="win" />
-        {facadeWindows.map(([x, y], index) => (
+        <defs>
+          <linearGradient id="tower" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#1b5270" />
+            <stop offset="1" stopColor="#0d2c40" />
+          </linearGradient>
+          <linearGradient id="wing" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#24597a" />
+            <stop offset="1" stopColor="#102c40" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="130" cy="78" rx="78" ry="16" fill="white" opacity="0.45" />
+        <ellipse cx="176" cy="86" rx="42" ry="12" fill="white" opacity="0.3" />
+        <path d="M0 332h640v108H0z" fill="#06141f" />
+        <path d="M0 332h640v26H0z" fill="#9fd4ea" opacity="0.18" />
+        <rect x="228" y="348" width="184" height="64" fill="#14384f" opacity="0.28" />
+        <rect x="64" y="176" width="156" height="156" rx="12" fill="url(#wing)" />
+        <rect x="214" y="86" width="212" height="246" rx="16" fill="url(#tower)" />
+        <rect x="420" y="196" width="156" height="136" rx="12" fill="url(#wing)" />
+        <path d="M230 100h28v214h-28z" fill="white" opacity="0.08" />
+        <path d="M268 332h104l-10 12H278z" fill="#00a9c1" />
+        <rect x="292" y="286" width="56" height="46" rx="4" fill="#07141f" />
+        <rect x="302" y="294" width="36" height="38" rx="3" fill="#9aeff8" className="win" />
+        {windows.map(([x, y], index) => (
           <rect
             key={`${x}-${y}`}
             x={x}
             y={y}
-            width="26"
-            height="18"
+            width="22"
+            height="14"
             rx="2"
-            fill={index % 5 === 0 ? "#6aa4c4" : "#e7f7ff"}
-            className={index % 5 === 0 ? undefined : "win"}
-            style={index % 5 === 0 ? undefined : { animationDelay: `${(index % 8) * 0.28}s` }}
+            fill={index % 4 === 0 ? "#6aa4c4" : "#f3fbff"}
+            className={index % 4 === 0 ? undefined : "win"}
+            style={index % 4 === 0 ? undefined : { animationDelay: `${(index % 9) * 0.25}s` }}
           />
         ))}
+        <rect x="40" y="300" width="3" height="32" fill="#0c2434" />
+        <circle cx="41.5" cy="296" r="5" fill="#fff4c2" className="win" />
+        <rect x="596" y="300" width="3" height="32" fill="#0c2434" />
+        <circle cx="597.5" cy="296" r="5" fill="#fff4c2" className="win" style={{ animationDelay: "1.1s" }} />
       </svg>
       <div className="absolute top-5 left-5 rounded-2xl bg-white/95 px-3 py-2 text-[#00a9c1] shadow-lg">
         <Logo compact />
@@ -442,18 +495,25 @@ function Arrows({ target }: { target: React.RefObject<HTMLDivElement | null> }) 
   );
 }
 
-function Portrait({ name }: { name: string }) {
-  const parts = name.split(" ");
-  const initials = (parts[0]?.[0] ?? "") + (parts[1]?.[0] ?? "");
+function Portrait({ slug }: { slug: string }) {
+  const longHair = slug === "aliya";
+  const hair = slug === "orel" ? "#4a3428" : slug === "musay" ? "#1c1a19" : "#241c18";
   return (
-    <svg viewBox="0 0 200 260" className="portrait-idle h-full w-full" aria-hidden>
-      <ellipse cx="100" cy="248" rx="70" ry="28" fill="#ffffff" opacity="0.55" />
-      <path d="M40 250c8-70 28-92 60-92s52 22 60 92" fill="#f7fbfc" />
-      <circle cx="100" cy="92" r="38" fill="#f3d2bd" />
-      <path d="M64 96c4-40 24-58 36-58 18 0 34 16 38 48-18 6-30 4-40-2-8 8-22 12-34 12Z" fill="#2c241c" />
-      <text x="100" y="102" textAnchor="middle" fontSize="18" fontWeight="700" fill="#6a5346">
-        {initials}
-      </text>
+    <svg viewBox="0 0 200 280" className="portrait-idle h-full w-full" aria-hidden>
+      <ellipse cx="100" cy="262" rx="62" ry="16" fill="#ffffff" opacity="0.45" />
+      <path d="M38 280c6-78 28-108 62-108s56 30 62 108" fill="#f7fbfc" />
+      <path d="M78 176c6 18 38 22 44 0" fill="none" stroke="#00a9c1" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="100" cy="176" r="4" fill="#00a9c1" />
+      <path d="M86 150h28v22c0 8-6 14-14 14s-14-6-14-14z" fill="#f0c3aa" />
+      <ellipse cx="100" cy="108" rx="34" ry="40" fill="#f3d2bd" />
+      {longHair ? (
+        <path d="M62 118c2-52 22-74 38-74 22 0 40 20 42 58 2 36-6 78-14 104h-18c4-28 6-58 2-78-10 8-24 10-36 4-4 22-2 48 2 74H60c-6-28-8-70 2-88z" fill={hair} />
+      ) : (
+        <path d="M66 112c2-46 20-66 34-66 20 0 36 18 38 52-16 8-28 6-38-2-10 10-24 12-34 8z" fill={hair} />
+      )}
+      <ellipse cx="88" cy="110" rx="3" ry="3.4" fill="#3d2c26" />
+      <ellipse cx="114" cy="110" rx="3" ry="3.4" fill="#3d2c26" />
+      <path d="M94 126c4 4 10 4 14 0" fill="none" stroke="#c48b78" strokeWidth="1.6" strokeLinecap="round" />
     </svg>
   );
 }

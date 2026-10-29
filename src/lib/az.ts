@@ -122,6 +122,6 @@ export const steps = [
 ];
 
 export const news = [
-  { date: "Апрель 2026", title: "Студенты лаборатории отмечены на витрине студенческих работ Purdue", href: "/news" },
   { date: "2024", title: "Открыт приём в филиале Шымкента", href: "/news" },
+  { date: "Сеть", title: "Клиники работают в Алматы, Актау и Шымкенте", href: "/contacts" },
 ];

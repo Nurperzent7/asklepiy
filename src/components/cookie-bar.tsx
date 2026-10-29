@@ -9,12 +9,12 @@ export function CookieBar() {
   }, []);
   if (!open) return null;
   return (
-    <div className="fixed inset-x-0 bottom-20 z-50 border-t border-black/5 bg-white px-4 py-3 text-sm text-[#0c1222] md:bottom-0">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
-        <p>Мы используем cookie для корректной работы сайта и улучшения сервиса.</p>
+    <div className="fixed inset-x-3 bottom-24 z-50 md:inset-x-auto md:right-5 md:bottom-5 md:w-[380px]">
+      <div className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white/95 px-4 py-3 text-sm text-[#0c1222] shadow-[0_16px_40px_rgba(12,18,34,0.14)] backdrop-blur">
+        <p className="leading-snug">Cookie помогают сайту работать корректно.</p>
         <button
           type="button"
-          className="font-semibold text-[#00a9c1]"
+          className="shrink-0 rounded-full bg-[#00a9c1] px-3 py-1.5 text-xs font-bold text-white"
           onClick={() => {
             window.localStorage.setItem("az-cookie", "1");
             setOpen(false);
