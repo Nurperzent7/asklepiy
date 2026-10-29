@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, MapPin, Menu } from "lucide-react";
 import { branches } from "@/lib/az";
 import { useClinic } from "@/components/city-context";
@@ -21,10 +21,23 @@ const nav = [
 export function SiteHeader() {
   const { city, setCity, lang, setLang } = useClinic();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const current = branches.find((item) => item.id === city)!;
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-black/[0.04] bg-white/95 backdrop-blur">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b bg-white/90 backdrop-blur-md transition-shadow duration-300",
+        scrolled ? "border-black/[0.06] shadow-[0_10px_30px_rgba(12,18,34,0.06)]" : "border-transparent"
+      )}
+    >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-3 px-4">
         <Link href="/" aria-label="AsiaKoz" className="shrink-0">
           <span className="sm:hidden">
@@ -43,10 +56,10 @@ export function SiteHeader() {
           >
             <MapPin className="size-3.5 text-[#00a9c1]" />
             {current.name}
-            <ChevronDown className="size-3.5 text-[#4a5568]" />
+            <ChevronDown className={cn("size-3.5 text-[#4a5568] transition-transform duration-200", open && "rotate-180")} />
           </button>
           {open ? (
-            <div className="absolute top-11 left-0 z-50 w-44 rounded-2xl border border-black/5 bg-white p-1 shadow-lg">
+            <div className="menu-pop absolute top-11 left-0 z-50 w-44 rounded-2xl border border-black/5 bg-white p-1 shadow-lg">
               {branches.map((item) => (
                 <button
                   key={item.id}
@@ -68,7 +81,7 @@ export function SiteHeader() {
         </div>
         <nav className="ml-3 hidden items-center gap-5 lg:flex">
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="text-[13px] font-medium text-[#4a5568] hover:text-[#0c1222]">
+            <Link key={item.href} href={item.href} className="nav-link text-[13px] font-medium text-[#4a5568] transition-colors hover:text-[#0c1222]">
               {lang === "ru" ? item.ru : item.kk}
             </Link>
           ))}
@@ -92,7 +105,7 @@ export function SiteHeader() {
           </div>
           <Link
             href="/#booking"
-            className="hidden h-10 items-center rounded-full bg-[#00a9c1] px-4 text-[13px] font-bold text-white shadow-[0_8px_20px_rgba(0,169,193,0.28)] sm:inline-flex"
+            className="az-btn pulse-teal hidden h-10 items-center rounded-full bg-[#00a9c1] px-4 text-[13px] font-bold text-white sm:inline-flex"
           >
             {lang === "ru" ? "Записаться" : "Жазылу"}
           </Link>

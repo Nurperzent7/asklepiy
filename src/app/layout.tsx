@@ -4,6 +4,7 @@ import { CityProvider } from "@/components/city-context";
 import { CookieBar } from "@/components/cookie-bar";
 import { MobileBookBar } from "@/components/mobile-book-bar";
 import { SiteFooter } from "@/components/site-footer";
+import { PageFade } from "@/components/page-fade";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-full bg-[#f7fbfd] text-[#0c1222] antialiased">
         <CityProvider>
           <SiteHeader />
-          <main className="pb-24 md:pb-0">{children}</main>
+          <main className="pb-24 md:pb-0">
+            <PageFade>{children}</PageFade>
+          </main>
           <SiteFooter />
           <MobileBookBar />
           <CookieBar />

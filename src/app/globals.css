@@ -129,5 +129,270 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes blob-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -16px, 0) scale(1.08);
+  }
+}
+
+@keyframes menu-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-130%);
+  }
+  to {
+    transform: translateX(130%);
+  }
+}
+
+@keyframes play-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes window-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes soft-pulse {
+  0% {
+    box-shadow: 0 10px 24px rgba(0, 169, 193, 0.28);
+  }
+  70% {
+    box-shadow: 0 10px 24px rgba(0, 169, 193, 0.28), 0 0 0 10px rgba(0, 169, 193, 0);
+  }
+  100% {
+    box-shadow: 0 10px 24px rgba(0, 169, 193, 0.28), 0 0 0 0 rgba(0, 169, 193, 0);
+  }
+}
+
+.rise {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.float-card {
+  animation: float-y 5.5s ease-in-out 0.45s infinite;
+}
+
+.page-enter {
+  animation: page-enter 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.blob {
+  animation: blob-drift 9s ease-in-out infinite;
+}
+
+.menu-pop {
+  transform-origin: top left;
+  animation: menu-pop 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: #00a9c1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 36%, rgba(255, 255, 255, 0.72) 50%, transparent 64%);
+  transform: translateX(-130%);
+  pointer-events: none;
+}
+
+.sheen:hover::after {
+  animation: sheen 0.75s ease;
+}
+
+.play-btn {
+  animation: play-pop 2.4s ease-in-out infinite;
+}
+
+.portrait-idle {
+  animation: breathe 4.8s ease-in-out infinite;
+}
+
+.arrow-btn {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.arrow-btn:hover {
+  transform: translateY(-2px);
+  border-color: #b7e7ef;
+  background: #edfafc;
+}
+
+.city-pill {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.city-pill[data-on="true"] {
+  box-shadow: 0 8px 18px rgba(0, 169, 193, 0.28);
+}
+
+.win {
+  animation: window-glow 3.4s ease-in-out infinite;
+}
+
+.az-btn {
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.az-btn:hover {
+  transform: translateY(-2px);
+}
+
+.az-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.pulse-teal {
+  animation: soft-pulse 2.4s ease-out infinite;
+}
+
+.lift {
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 44px rgba(12, 18, 34, 0.1);
+}
+
+.reveal {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 22%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .rise,
+  .float-card,
+  .win,
+  .pulse-teal,
+  .page-enter,
+  .blob,
+  .menu-pop,
+  .play-btn,
+  .portrait-idle,
+  .reveal {
+    animation: none;
+  }
+
+  .sheen:hover::after {
+    animation: none;
+  }
+
+  .lift:hover,
+  .az-btn:hover {
+    transform: none;
   }
 }

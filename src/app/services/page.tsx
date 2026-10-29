@@ -12,7 +12,7 @@ export default function ServicesPage() {
       <p className="mt-2 text-center text-sm text-[#4a5568]">Диагностика, лечение и сложные операции на глазах</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {serviceCards.map((service) => (
-          <article key={service.slug} className="rounded-[1.4rem] border border-black/[0.05] bg-white p-6">
+          <article key={service.slug} className="lift sheen rounded-[1.4rem] border border-black/[0.05] bg-white p-6 shadow-[0_10px_30px_rgba(12,18,34,0.04)]">
             <span className="grid size-11 place-items-center rounded-2xl bg-[#e7f8fb] text-[#00a9c1]">
               <Eye className="size-5" />
             </span>
