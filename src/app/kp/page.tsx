@@ -17,7 +17,7 @@ const scope = [
   {
     n: "02",
     title: "Услуги",
-    text: "Шесть страниц: лазерная коррекция, катаракта, витрэктомия, косоглазие, глаукома, сетчатка.",
+    text: "Столько страниц, сколько направлений у клиники. Лазер, катаракта, витрэктомия, косоглазие, глаукома и сетчатка — примеры, список не ограничен.",
   },
   {
     n: "03",
@@ -38,6 +38,11 @@ const scope = [
     n: "06",
     title: "Телефон и компьютер",
     text: "Одна вёрстка на оба экрана, шапка, подвал и уведомление о cookie.",
+  },
+  {
+    n: "07",
+    title: "Домен и хостинг",
+    text: "Регистрация домена и размещение сайта входят в 200 000 тенге.",
   },
 ];
 
@@ -88,7 +93,7 @@ export default function ProposalPage() {
           <div className="bg-white px-1 py-5 sm:px-2">
             <p className="text-[11px] font-bold tracking-[0.16em] text-[#8a8378]">СТОИМОСТЬ</p>
             <p className="mt-1 text-[40px] leading-none font-extrabold tracking-[-0.04em]">200&nbsp;000</p>
-            <p className="mt-2 text-sm text-[#5c564e]">тенге, фиксированная сумма</p>
+            <p className="mt-2 text-sm text-[#5c564e]">тенге. Домен и хостинг входят в сумму.</p>
           </div>
           <div className="bg-white px-1 py-5 sm:px-6">
             <p className="text-[11px] font-bold tracking-[0.16em] text-[#8a8378]">СРОК</p>
@@ -164,7 +169,7 @@ export default function ProposalPage() {
             </tbody>
           </table>
           <p className="mt-3 text-sm leading-6 text-[#5c564e]">
-            Оплата в день старта. Домен, хостинг и реклама в эти 200 000 тенге не входят.
+            Оплата в день старта. Домен и хостинг входят в сумму. Реклама оплачивается отдельно.
           </p>
         </section>
 
@@ -182,7 +187,8 @@ export default function ProposalPage() {
             <h2 className="text-lg font-extrabold">Приёмка</h2>
             <p className="mt-3 text-sm leading-6 text-[#3f3a34]">
               Сайт принят, когда страницы из состава открываются, кнопка WhatsApp ведёт на номер клиники, а адрес и
-              часы Алматы совпадают с переданными. Предложение действует 14 дней, до 12 ноября 2026.
+              часы Алматы совпадают с переданными. Домен открывается, сайт размещён на хостинге. Предложение действует
+              14 дней, до 12 ноября 2026.
             </p>
           </div>
         </section>
