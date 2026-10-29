@@ -48,7 +48,16 @@ export default function ProposalPage() {
         <Link href="/" className="text-sm font-semibold text-[#0e7490]">
           Открыть пример сайта
         </Link>
-        <PrintButton />
+        <div className="flex items-center gap-2">
+          <a
+            href="/KP-1029-oftalmologiya-almaty.docx"
+            download="KP-1029-oftalmologiya-almaty.docx"
+            className="rounded-full border border-[#1c1915] bg-white px-4 py-2 text-sm font-semibold text-[#1c1915]"
+          >
+            Скачать Word
+          </a>
+          <PrintButton />
+        </div>
       </div>
 
       <article className="mx-auto max-w-[880px] bg-white px-6 py-8 sm:px-12 sm:py-12 print:max-w-none print:px-0 print:py-0">
