@@ -21,11 +21,11 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: "AsiaKoz — турецкая глазная клиника в Алматы, Актау и Шымкенте",
-    template: "%s — AsiaKoz",
+    default: "Асклепий — глазная клиника в Алматы, Актау и Шымкенте",
+    template: "%s — Асклепий",
   },
   description:
-    "Турецкие офтальмохирурги. Диагностика и лечение зрения в Алматы, Актау и Шымкенте.",
+    "Глазная клиника Асклепий. Диагностика и лечение зрения в Алматы, Актау и Шымкенте.",
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         className={
           proposal
             ? "min-h-full bg-[#f4f1ea] text-[#1c1915] antialiased"
-            : "min-h-full bg-[#f3fafc] text-[#0c1222] antialiased [background-image:radial-gradient(ellipse_80%_42%_at_100%_-8%,rgba(0,169,193,0.14),transparent_52%),radial-gradient(ellipse_55%_36%_at_-8%_8%,rgba(186,230,240,0.7),transparent_48%)]"
+            : "min-h-full bg-[#f4f5ef] text-[#0c1222] antialiased [background-image:radial-gradient(ellipse_80%_42%_at_100%_-8%,rgba(53,89,183,0.12),transparent_52%),radial-gradient(ellipse_55%_36%_at_-8%_8%,rgba(232,236,248,0.9),transparent_48%)]"
         }
       >
         {proposal ? (

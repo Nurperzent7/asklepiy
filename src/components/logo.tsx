@@ -1,30 +1,15 @@
+import Image from "next/image";
 import { cn } from "cn";
 
-export function Logo({ compact = false, light = false }: { compact?: boolean; light?: boolean }) {
+export function Logo({ compact = false }: { compact?: boolean; light?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-2.5 text-[#00a9c1]">
-      <svg viewBox="0 0 36 36" className="size-9 shrink-0" aria-hidden>
-        <circle cx="18" cy="18" r="16" fill={light ? "#123246" : "#e7f8fb"} />
-        <circle cx="18" cy="18" r="14.2" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        <path
-          d="M23.2 11.2a8 8 0 1 0 .2 13.8"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-        />
-        <circle cx="16.5" cy="18" r="3.1" fill="currentColor" />
-        <circle cx="17.4" cy="16.9" r="1" fill="white" />
-      </svg>
-      <span className="leading-none">
-        <span className={cn("block font-extrabold tracking-[0.18em] text-[15px]", light && "text-white")}>ASIAKOZ</span>
-        {compact ? null : (
-          <span className="mt-1 block max-w-[148px] text-[8px] font-semibold tracking-[0.08em] text-[#00a9c1]">
-            ТУРЕЦКАЯ ГЛАЗНАЯ КЛИНИКА
-          </span>
-        )}
-      </span>
-    </span>
+    <Image
+      src="/asklepiy-logo.png"
+      alt="Асклепий"
+      width={188}
+      height={123}
+      className={compact ? "h-10 w-auto" : "h-12 w-auto"}
+    />
   );
 }
 

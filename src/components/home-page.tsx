@@ -21,11 +21,11 @@ import { Logo, WaIcon } from "@/components/logo";
 import { Reveal } from "@/components/reveal";
 
 const serviceIcons = [Zap, Focus, Scan, Eye, Activity, Eye];
-const serviceTones = ["bg-[#e7f8fb]", "bg-[#e8f4ff]", "bg-[#eef6ff]", "bg-[#e7fbf3]", "bg-[#f3f7ff]", "bg-[#e7f8fb]"];
-const serviceAccents = ["#00a9c1", "#14919b", "#0e7490", "#1d6a86", "#3b82c4", "#0f766e"];
+const serviceTones = ["bg-[#e8eef8]", "bg-[#e8f4ff]", "bg-[#eef6ff]", "bg-[#e7fbf3]", "bg-[#f3f7ff]", "bg-[#e8eef8]"];
+const serviceAccents = ["#3559b7", "#3d6fd4", "#2f4f9a", "#5d99d8", "#6a7ec8", "#243e86"];
 const stories = [
   { title: "Лечение косоглазия", wash: "from-[#082033] via-[#0e4f66] to-[#14919b]" },
-  { title: "После операции", wash: "from-[#102a43] via-[#1d4e6f] to-[#00a9c1]" },
+  { title: "После операции", wash: "from-[#102a43] via-[#1d4e6f] to-[#3559b7]" },
   { title: "Приём врача", wash: "from-[#0b3a4a] via-[#146c80] to-[#7ec4de]" },
   { title: "Филиал", wash: "from-[#071824] via-[#123246] to-[#1d6a86]" },
   { title: "Консультация", wash: "from-[#12324c] via-[#245864] to-[#3aa0c4]" },
@@ -41,21 +41,21 @@ export function HomePage() {
   return (
     <div className="text-[#0c1222]">
       <section className="relative mx-auto grid max-w-6xl items-center gap-10 overflow-hidden px-4 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:py-16">
-        <div className="blob pointer-events-none absolute -top-8 right-[6%] size-72 rounded-full bg-[#00a9c1]/15 blur-3xl" />
+        <div className="blob pointer-events-none absolute -top-8 right-[6%] size-72 rounded-full bg-[#3559b7]/15 blur-3xl" />
         <div
           className="blob pointer-events-none absolute bottom-0 left-[4%] size-56 rounded-full bg-[#8ec4ee]/40 blur-3xl"
           style={{ animationDelay: "-3s" }}
         />
         <div className="relative">
-          <p className="rise text-xs font-bold tracking-[0.18em] text-[#00a9c1]">АЛМАТЫ · АКТАУ · ШЫМКЕНТ</p>
+          <p className="rise text-xs font-bold tracking-[0.18em] text-[#3559b7]">АЛМАТЫ · АКТАУ · ШЫМКЕНТ</p>
           <h1
             className="rise mt-3 text-[36px] leading-[1.08] font-extrabold tracking-[-0.035em] sm:text-[52px]"
             style={{ animationDelay: "80ms" }}
           >
-            Турецкая глазная клиника <span className="text-[#00a9c1]">AsiaKoz</span>
+            Глазная клиника <span className="text-[#3559b7]">Асклепий</span>
           </h1>
           <p className="rise mt-4 max-w-xl text-[17px] leading-relaxed text-[#3d4a5c]" style={{ animationDelay: "150ms" }}>
-            Турецкие офтальмохирурги. Диагностика и лечение зрения в Алматы, Актау и Шымкенте.
+            Диагностика и лечение зрения в Алматы, Актау и Шымкенте.
           </p>
           <div className="rise mt-6 flex flex-wrap gap-2" style={{ animationDelay: "210ms" }}>
             {branches.map((item) => (
@@ -66,7 +66,7 @@ export function HomePage() {
                 className={
                   item.id === city
                     ? "h-9 rounded-full bg-[#0c1222] px-3.5 text-xs font-bold text-white"
-                    : "h-9 rounded-full bg-white/80 px-3.5 text-xs font-semibold text-[#245864] ring-1 ring-[#d5eef3] hover:ring-[#00a9c1]"
+                    : "h-9 rounded-full bg-white/80 px-3.5 text-xs font-semibold text-[#245864] ring-1 ring-[#d5deef] hover:ring-[#3559b7]"
                 }
               >
                 {item.name}
@@ -76,7 +76,7 @@ export function HomePage() {
           <div className="rise mt-7" style={{ animationDelay: "280ms" }}>
             <a
               href={waLink(city)}
-              className="az-btn pulse-teal inline-flex h-12 items-center gap-2 rounded-full bg-[#00a9c1] px-5 text-sm font-bold text-white"
+              className="az-btn pulse-teal inline-flex h-12 items-center gap-2 rounded-full bg-[#3559b7] px-5 text-sm font-bold text-white"
             >
               <WaIcon />
               {lang === "ru" ? "Записаться в WhatsApp" : "WhatsApp-қа жазылу"}
@@ -90,7 +90,7 @@ export function HomePage() {
             key={branch.id}
             className="float-card absolute right-4 bottom-4 left-4 rounded-2xl bg-white/95 p-4 shadow-[0_16px_40px_rgba(12,18,34,0.14)] backdrop-blur-sm sm:right-auto sm:w-[280px]"
           >
-            <p className="text-[11px] font-bold tracking-[0.12em] text-[#00a9c1]">СЕТЬ ОФТАЛЬМОЛОГИЧЕСКИХ КЛИНИК</p>
+            <p className="text-[11px] font-bold tracking-[0.12em] text-[#3559b7]">СЕТЬ ОФТАЛЬМОЛОГИЧЕСКИХ КЛИНИК</p>
             <p className="mt-1 text-lg font-bold">{branch.name}</p>
             <p className="text-sm text-[#4a5568]">{branch.address}</p>
           </div>
@@ -101,7 +101,7 @@ export function HomePage() {
       <Reveal className="mx-auto max-w-6xl px-4">
         <div className="mb-5 flex items-end justify-between">
           <h2 className="text-[28px] font-extrabold tracking-tight sm:text-[32px]">
-            {lang === "ru" ? "Почему выбирают AsiaKoz" : "Неге AsiaKoz"}
+            {lang === "ru" ? "Почему выбирают Асклепий" : "Неге Асклепий"}
           </h2>
           <Arrows target={whyRef} />
         </div>
@@ -114,7 +114,7 @@ export function HomePage() {
                 className="lift relative w-[min(300px,82vw)] shrink-0 snap-start overflow-hidden rounded-[1.5rem] border border-[#e7f3f6] bg-white px-5 py-5 shadow-[0_16px_40px_rgba(12,40,60,0.05)] sm:w-[calc(25%-9px)]"
               >
                 <div className="relative flex items-center justify-between">
-                  <span className="grid size-10 place-items-center rounded-2xl bg-[#e7f8fb] text-[#00a9c1]">
+                  <span className="grid size-10 place-items-center rounded-2xl bg-[#e8eef8] text-[#3559b7]">
                     <Icon className="size-4" />
                   </span>
                   <span className="text-xs font-semibold text-[#8aa0aa]">{item.n}</span>
@@ -137,12 +137,12 @@ export function HomePage() {
             return (
             <article key={service.slug} className="group lift sheen relative overflow-hidden rounded-[1.5rem] border border-[#e7f3f6] bg-white p-6 shadow-[0_16px_40px_rgba(12,40,60,0.05)]">
               <span className="absolute inset-x-0 top-0 h-1" style={{ background: serviceAccents[index] }} />
-              <span className={`grid size-12 place-items-center rounded-2xl text-[#00a9c1] transition-transform duration-300 group-hover:scale-110 ${serviceTones[index]}`}>
+              <span className={`grid size-12 place-items-center rounded-2xl text-[#3559b7] transition-transform duration-300 group-hover:scale-110 ${serviceTones[index]}`}>
                 <Icon className="size-5" />
               </span>
               <h3 className="mt-4 text-lg font-bold">{service.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[#4a5568]">{service.text}</p>
-              <Link href={`/services/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-[#00a9c1] transition-transform duration-300 group-hover:translate-x-1">
+              <Link href={`/services/${service.slug}`} className="mt-4 inline-flex text-sm font-semibold text-[#3559b7] transition-transform duration-300 group-hover:translate-x-1">
                 Подробнее →
               </Link>
             </article>
@@ -217,12 +217,12 @@ export function HomePage() {
                   ))}
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-[#4a5568]">{doctor.text}</p>
-                <Link href={`/doctors/${doctor.slug}`} className="mt-2 text-sm font-semibold text-[#00a9c1]">
+                <Link href={`/doctors/${doctor.slug}`} className="mt-2 text-sm font-semibold text-[#3559b7]">
                   Подробнее →
                 </Link>
                 <a
                   href={waLink(city, `Врач: ${doctor.name}`)}
-                  className="az-btn mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#00a9c1] text-sm font-bold text-white"
+                  className="az-btn mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#3559b7] text-sm font-bold text-white"
                 >
                   <WaIcon />
                   Записаться к врачу
@@ -238,7 +238,7 @@ export function HomePage() {
         <div className="mb-4 flex items-end justify-between">
           <div>
             <h2 className="text-[32px] font-extrabold">Отзывы пациентов</h2>
-            <p className="mt-1 text-sm text-[#4a5568]">Реальные видеоотзывы из Instagram — @asiakoz.clinic.</p>
+            <p className="mt-1 text-sm text-[#4a5568]">Видеоотзывы пациентов в Instagram.</p>
           </div>
           <Arrows target={reviewRef} />
         </div>
@@ -253,7 +253,7 @@ export function HomePage() {
                 <span className="pointer-events-none absolute top-14 left-1/2 size-36 -translate-x-1/2 rounded-full border border-white/25" />
                 <span className="pointer-events-none absolute top-20 left-1/2 size-20 -translate-x-1/2 rounded-full border border-white/40" />
                 <span className="absolute top-[4.5rem] left-1/2 -translate-x-1/2">
-                  <span className="play-btn grid size-14 place-items-center rounded-full bg-white/95 pl-0.5 text-lg text-[#00a9c1] shadow-[0_10px_24px_rgba(12,18,34,0.16)]">
+                  <span className="play-btn grid size-14 place-items-center rounded-full bg-white/95 pl-0.5 text-lg text-[#3559b7] shadow-[0_10px_24px_rgba(12,18,34,0.16)]">
                     ▶
                   </span>
                 </span>
@@ -263,7 +263,7 @@ export function HomePage() {
               </div>
               <div className="p-3">
                 <p className="text-sm font-bold">Видеоотзыв пациента</p>
-                <p className="text-sm font-semibold text-[#00a9c1]">Открыть в Instagram →</p>
+                <p className="text-sm font-semibold text-[#3559b7]">Открыть в Instagram →</p>
               </div>
             </a>
           ))}
@@ -271,7 +271,7 @@ export function HomePage() {
         <div className="mt-4 flex flex-wrap justify-center gap-3">
           <a
             href={branch.instagramUrl}
-            className="az-btn inline-flex h-11 items-center rounded-full bg-[#00a9c1] px-5 text-sm font-bold text-white"
+            className="az-btn inline-flex h-11 items-center rounded-full bg-[#3559b7] px-5 text-sm font-bold text-white"
           >
             Отзывы в Instagram
           </a>
@@ -288,10 +288,10 @@ export function HomePage() {
         <h2 className="text-[32px] font-extrabold">Как записаться</h2>
         <p className="mt-1 text-sm text-[#4a5568]">3 простых шага — без звонка</p>
         <div className="relative mt-10 grid gap-4 text-center md:grid-cols-3">
-          <div aria-hidden className="pointer-events-none absolute top-[52px] right-[16%] left-[16%] hidden border-t border-dashed border-[#00a9c1]/40 md:block" />
+          <div aria-hidden className="pointer-events-none absolute top-[52px] right-[16%] left-[16%] hidden border-t border-dashed border-[#3559b7]/40 md:block" />
           {steps.map((step) => (
             <article key={step.n} className="lift relative rounded-[1.6rem] border border-white bg-white/90 px-6 py-8 shadow-[0_16px_40px_rgba(12,40,60,0.05)]">
-              <span className="relative z-10 mx-auto grid size-12 place-items-center rounded-2xl bg-[#00a9c1] text-lg font-extrabold text-white shadow-[0_10px_24px_rgba(0,169,193,0.35)]">
+              <span className="relative z-10 mx-auto grid size-12 place-items-center rounded-2xl bg-[#3559b7] text-lg font-extrabold text-white shadow-[0_10px_24px_rgba(53, 89, 183,0.35)]">
                 {step.n}
               </span>
               <h3 className="mt-4 font-bold">{step.title}</h3>
@@ -310,7 +310,7 @@ export function HomePage() {
       </Reveal>
 
       <Reveal id="booking" className="mx-auto max-w-3xl px-4 pb-16">
-        <div className="rounded-[32px] bg-gradient-to-br from-[#00a9c1] via-[#7ed7e4] to-white p-px shadow-[0_24px_60px_rgba(0,169,193,0.16)]">
+        <div className="rounded-[32px] bg-gradient-to-br from-[#3559b7] via-[#9eb0e4] to-white p-px shadow-[0_24px_60px_rgba(53, 89, 183,0.16)]">
         <div className="rounded-[31px] bg-white px-5 py-10 text-center">
           <h2 className="text-[30px] font-extrabold">Запишитесь на приём</h2>
           <p className="mt-2 text-sm text-[#4a5568]">Выберите город — откроется WhatsApp филиала.</p>
@@ -323,8 +323,8 @@ export function HomePage() {
                 data-on={item.id === city}
                 className={
                   item.id === city
-                    ? "city-pill h-10 rounded-full bg-[#00a9c1] px-4 text-sm font-bold text-white"
-                    : "city-pill h-10 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold hover:border-[#b7e7ef]"
+                    ? "city-pill h-10 rounded-full bg-[#3559b7] px-4 text-sm font-bold text-white"
+                    : "city-pill h-10 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold hover:border-[#b7c4e8]"
                 }
               >
                 {item.name}
@@ -333,7 +333,7 @@ export function HomePage() {
           </div>
           <a
             href={waLink(city)}
-            className="az-btn pulse-teal mt-4 inline-flex h-12 w-full max-w-xl items-center justify-center gap-2 rounded-full bg-[#00a9c1] text-sm font-bold text-white"
+            className="az-btn pulse-teal mt-4 inline-flex h-12 w-full max-w-xl items-center justify-center gap-2 rounded-full bg-[#3559b7] text-sm font-bold text-white"
           >
             <WaIcon />
             Отправить в WhatsApp
@@ -360,8 +360,8 @@ export function HomePage() {
                 data-on={item.id === city}
                 className={
                 item.id === city
-                  ? "city-pill h-10 rounded-full bg-[#00a9c1] px-4 text-sm font-bold text-white"
-                  : "city-pill h-10 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold hover:border-[#b7e7ef]"
+                  ? "city-pill h-10 rounded-full bg-[#3559b7] px-4 text-sm font-bold text-white"
+                  : "city-pill h-10 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold hover:border-[#b7c4e8]"
               }
             >
               {item.name}
@@ -382,7 +382,7 @@ export function HomePage() {
           </a>
           <a
             href={waLink(city)}
-            className="az-btn mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-[#00a9c1] text-sm font-bold text-white"
+            className="az-btn mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-[#3559b7] text-sm font-bold text-white"
           >
             <WaIcon />
             Написать в WhatsApp
@@ -429,7 +429,7 @@ function ClinicFacade() {
         <rect x="214" y="86" width="212" height="246" rx="16" fill="url(#tower)" />
         <rect x="420" y="196" width="156" height="136" rx="12" fill="url(#wing)" />
         <path d="M230 100h28v214h-28z" fill="white" opacity="0.08" />
-        <path d="M268 332h104l-10 12H278z" fill="#00a9c1" />
+        <path d="M268 332h104l-10 12H278z" fill="#3559b7" />
         <rect x="292" y="286" width="56" height="46" rx="4" fill="#07141f" />
         <rect x="302" y="294" width="36" height="38" rx="3" fill="#9aeff8" className="win" />
         {windows.map(([x, y], index) => (
@@ -450,7 +450,7 @@ function ClinicFacade() {
         <rect x="596" y="300" width="3" height="32" fill="#0c2434" />
         <circle cx="597.5" cy="296" r="5" fill="#fff4c2" className="win" style={{ animationDelay: "1.1s" }} />
       </svg>
-      <div className="absolute top-5 left-5 rounded-2xl bg-white/95 px-3 py-2 text-[#00a9c1] shadow-lg">
+      <div className="absolute top-5 left-5 rounded-2xl bg-white/95 px-3 py-2 text-[#3559b7] shadow-lg">
         <Logo compact />
       </div>
     </div>
@@ -462,7 +462,7 @@ function Info({ k, v, href }: { k: string; v: string; href?: string }) {
     <div className="border-b border-black/[0.04] py-3 last:border-0">
       <p className="text-[11px] font-bold tracking-[0.12em] text-[#8aa0aa] uppercase">{k}</p>
       {href ? (
-        <a href={href} className="text-sm font-semibold text-[#00a9c1]">
+        <a href={href} className="text-sm font-semibold text-[#3559b7]">
           {v}
         </a>
       ) : (
@@ -502,8 +502,8 @@ function Portrait({ slug }: { slug: string }) {
     <svg viewBox="0 0 200 280" className="portrait-idle h-full w-full" aria-hidden>
       <ellipse cx="100" cy="262" rx="62" ry="16" fill="#ffffff" opacity="0.45" />
       <path d="M38 280c6-78 28-108 62-108s56 30 62 108" fill="#f7fbfc" />
-      <path d="M78 176c6 18 38 22 44 0" fill="none" stroke="#00a9c1" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="100" cy="176" r="4" fill="#00a9c1" />
+      <path d="M78 176c6 18 38 22 44 0" fill="none" stroke="#3559b7" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="100" cy="176" r="4" fill="#3559b7" />
       <path d="M86 150h28v22c0 8-6 14-14 14s-14-6-14-14z" fill="#f0c3aa" />
       <ellipse cx="100" cy="108" rx="34" ry="40" fill="#f3d2bd" />
       {longHair ? (

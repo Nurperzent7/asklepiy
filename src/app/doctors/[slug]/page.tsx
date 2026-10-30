@@ -22,7 +22,7 @@ export default async function DoctorPage({ params }: { params: Promise<Params> }
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
-      <Link href="/doctors" className="text-sm font-semibold text-[#00a9c1]">
+      <Link href="/doctors" className="text-sm font-semibold text-[#3559b7]">
         ← Врачи
       </Link>
       <div className="mt-4">
@@ -39,7 +39,7 @@ export default async function DoctorPage({ params }: { params: Promise<Params> }
       </div>
       <a
         href={waLink("almaty", `Врач: ${doctor.name}`)}
-        className="az-btn mt-8 inline-flex h-12 items-center rounded-full bg-[#00a9c1] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(0,169,193,0.28)]"
+        className="az-btn mt-8 inline-flex h-12 items-center rounded-full bg-[#3559b7] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(53, 89, 183,0.28)]"
       >
         Записаться к врачу
       </a>

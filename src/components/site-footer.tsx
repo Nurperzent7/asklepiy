@@ -17,19 +17,21 @@ export function SiteFooter() {
     <footer className="bg-[#071824] text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-[1.4fr_0.8fr]">
         <div>
-          <Logo light />
+          <span className="inline-flex rounded-2xl bg-[#f4f5ef] px-3 py-2">
+            <Logo />
+          </span>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-[#b7c9d4]">
-            AsiaKoz — офтальмологические клиники в Алматы, Актау и Шымкенте.
+            Асклепий — офтальмологические клиники в Алматы, Актау и Шымкенте.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {branches.map((branch) => (
               <a
                 key={branch.id}
                 href={branch.instagramUrl}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white transition-colors hover:border-[#00a9c1]/50 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white transition-colors hover:border-[#3559b7]/50 hover:bg-white/10"
               >
                 <span className="size-4 rounded bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]" />
-                {branch.instagram}
+                Instagram · {branch.name}
               </a>
             ))}
           </div>
@@ -46,7 +48,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-xs leading-relaxed text-[#8aa0aa]">
         <p>Точный диагноз и метод лечения определяет врач после обследования.</p>
-        <p className="mt-1">© {new Date().getFullYear()} ТОО «ASIA KOZ»</p>
+        <p className="mt-1">© {new Date().getFullYear()} Асклепий</p>
       </div>
     </footer>
   );

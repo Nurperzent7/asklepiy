@@ -20,7 +20,7 @@ export const branches: Branch[] = [
     hours: "Пн–Пт 09:00–17:00, Сб до 14:00",
     phone: "+7 700 360 01 80",
     wa: "77003600180",
-    instagram: "@asiakoz.clinic",
+    instagram: "Профиль Алматы",
     instagramUrl: "https://www.instagram.com/asiakoz.clinic/",
     map: "https://2gis.kz/almaty/search/Райымбека%20176А",
   },
@@ -31,7 +31,7 @@ export const branches: Branch[] = [
     hours: "Пн–Пт 09:00–17:00, Сб до 14:00",
     phone: "+7 775 863 01 80",
     wa: "77758630180",
-    instagram: "@asiakoz.aqtau",
+    instagram: "Профиль Актау",
     instagramUrl: "https://www.instagram.com/asiakoz.aqtau/",
     map: "https://2gis.kz/aktau/search/7А%20микрорайон%2011",
   },
@@ -42,7 +42,7 @@ export const branches: Branch[] = [
     hours: "Пн–Пт 09:00–17:00, Сб до 14:00",
     phone: "+7 708 075 01 80",
     wa: "77080750180",
-    instagram: "@asiakoz.shymkent",
+    instagram: "Профиль Шымкента",
     instagramUrl: "https://www.instagram.com/asiakoz.shymkent/",
     map: "https://2gis.kz/shymkent/search/Байтурсынова%2086",
   },
@@ -51,13 +51,13 @@ export const branches: Branch[] = [
 export function waLink(city: CityId, extra?: string) {
   const branch = branches.find((item) => item.id === city)!;
   const text = extra
-    ? `Здравствуйте! Хочу записаться в AsiaKoz.\n\n${extra}`
-    : `Здравствуйте! Хочу записаться в AsiaKoz.\n\nГород: ${branch.name}`;
+    ? `Здравствуйте! Хочу записаться в Асклепий.\n\n${extra}`
+    : `Здравствуйте! Хочу записаться в Асклепий.\n\nГород: ${branch.name}`;
   return `https://wa.me/${branch.wa}?text=${encodeURIComponent(text)}`;
 }
 
 export const reasons = [
-  { n: "1/4", title: "Турецкие офтальмохирурги", text: "Специалисты с международной практикой." },
+  { n: "1/4", title: "Офтальмохирурги", text: "Специалисты с международной практикой." },
   { n: "2/4", title: "Три филиала", text: "Алматы, Актау и Шымкент." },
   { n: "3/4", title: "Комплексное лечение", text: "От диагностики до хирургии в одной клинике." },
   { n: "4/4", title: "Детям и взрослым", text: "Офтальмологическая помощь для всей семьи." },
@@ -108,7 +108,7 @@ export const doctors = [
     name: "Нурмухамед Мусай",
     role: "Главный врач",
     cities: "Алматы · Главный врач",
-    line: "AsiaKoz Алматы",
+    line: "Асклепий · Алматы",
     chips: ["Алматы филиал", "Главный врач"],
     text: "Главный врач филиала Алматы. Координирует приём и план лечения.",
     tone: "bg-[#e8eef8]",

@@ -17,10 +17,10 @@ export default function DoctorsPage() {
             <p className="font-semibold">{doctor.role}</p>
             <p className="mt-2 text-sm text-[#4a5568]">{doctor.text}</p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link href={`/doctors/${doctor.slug}`} className="text-sm font-semibold text-[#00a9c1]">
+              <Link href={`/doctors/${doctor.slug}`} className="text-sm font-semibold text-[#3559b7]">
                 Подробнее →
               </Link>
-              <a href={waLink("almaty", `Врач: ${doctor.name}`)} className="text-sm font-semibold text-[#00a9c1]">
+              <a href={waLink("almaty", `Врач: ${doctor.name}`)} className="text-sm font-semibold text-[#3559b7]">
                 Записаться к врачу
               </a>
             </div>

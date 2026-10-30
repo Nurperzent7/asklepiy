@@ -11,7 +11,7 @@ export default function NewsPage() {
       <ul className="divide-y divide-black/5 rounded-[24px] border border-white bg-white/80 px-5 shadow-[0_16px_40px_rgba(12,40,60,0.05)]">
         {news.map((item) => (
           <li key={item.title} className="py-5">
-            <p className="text-xs font-bold tracking-wide text-[#00a9c1] uppercase">{item.date}</p>
+            <p className="text-xs font-bold tracking-wide text-[#3559b7] uppercase">{item.date}</p>
             <p className="mt-1 text-lg font-bold">{item.title}</p>
           </li>
         ))}

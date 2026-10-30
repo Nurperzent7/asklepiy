@@ -21,7 +21,7 @@ export default function ContactsPage() {
             onClick={() => setCity(item.id)}
             className={
               item.id === city
-                ? "h-10 rounded-full bg-[#00a9c1] px-4 text-sm font-bold text-white"
+                ? "h-10 rounded-full bg-[#3559b7] px-4 text-sm font-bold text-white"
                 : "h-10 rounded-full border border-black/10 bg-white px-4 text-sm font-semibold"
             }
           >
@@ -45,7 +45,7 @@ export default function ContactsPage() {
         </a>
         <a
           href={waLink(city)}
-          className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-[#00a9c1] text-sm font-bold text-white"
+          className="mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-[#3559b7] text-sm font-bold text-white"
         >
           <WaIcon />
           Написать в WhatsApp

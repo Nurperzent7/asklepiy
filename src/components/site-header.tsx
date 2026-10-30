@@ -39,7 +39,7 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-6xl items-center gap-3 px-4">
-        <Link href="/" aria-label="AsiaKoz" className="shrink-0">
+        <Link href="/" aria-label="Асклепий" className="shrink-0">
           <span className="sm:hidden">
             <Logo compact />
           </span>
@@ -51,10 +51,10 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#d7eef2] bg-[#edfafc]/80 px-3 text-[13px] font-bold text-[#0c1222]"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#d5deef] bg-[#eef1fa]/80 px-3 text-[13px] font-bold text-[#0c1222]"
             aria-expanded={open}
           >
-            <MapPin className="size-3.5 text-[#00a9c1]" />
+            <MapPin className="size-3.5 text-[#3559b7]" />
             {current.name}
             <ChevronDown className={cn("size-3.5 text-[#4a5568] transition-transform duration-200", open && "rotate-180")} />
           </button>
@@ -66,7 +66,7 @@ export function SiteHeader() {
                   type="button"
                   className={cn(
                     "block w-full rounded-xl px-3 py-2 text-left text-sm",
-                    item.id === city ? "bg-[#edfafc] font-semibold" : "hover:bg-[#f7fbfd]"
+                    item.id === city ? "bg-[#eef1fa] font-semibold" : "hover:bg-[#f7fbfd]"
                   )}
                   onClick={() => {
                     setCity(item.id);
@@ -105,7 +105,7 @@ export function SiteHeader() {
           </div>
           <Link
             href="/#booking"
-            className="az-btn pulse-teal hidden h-10 items-center rounded-full bg-[#00a9c1] px-4 text-[13px] font-bold text-white sm:inline-flex"
+            className="az-btn pulse-teal hidden h-10 items-center rounded-full bg-[#3559b7] px-4 text-[13px] font-bold text-white sm:inline-flex"
           >
             {lang === "ru" ? "Записаться" : "Жазылу"}
           </Link>
@@ -118,7 +118,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right">
               <SheetHeader>
-                <SheetTitle>AsiaKoz</SheetTitle>
+                <SheetTitle>Асклепий</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col px-4">
                 {nav.map((item) => (

@@ -17,9 +17,9 @@ export default function ReviewsPage() {
             >
               <span>
                 <span className="block font-bold">{branch.name}</span>
-                <span className="text-sm text-[#4a5568]">{branch.instagram}</span>
+                <span className="text-sm text-[#4a5568]">Instagram</span>
               </span>
-              <span className="text-sm font-semibold text-[#00a9c1]">Instagram →</span>
+              <span className="text-sm font-semibold text-[#3559b7]">Instagram →</span>
             </a>
           </li>
         ))}

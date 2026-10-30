@@ -14,7 +14,7 @@ export function CookieBar() {
         <p className="leading-snug">Cookie помогают сайту работать корректно.</p>
         <button
           type="button"
-          className="shrink-0 rounded-full bg-[#00a9c1] px-3 py-1.5 text-xs font-bold text-white"
+          className="shrink-0 rounded-full bg-[#3559b7] px-3 py-1.5 text-xs font-bold text-white"
           onClick={() => {
             window.localStorage.setItem("az-cookie", "1");
             setOpen(false);
